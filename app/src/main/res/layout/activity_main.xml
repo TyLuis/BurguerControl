@@ -4,29 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CBE68F25"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <AutoCompleteTextView
         android:id="@+id/edtLogin"
         android:layout_width="212dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         app:layout_constraintBottom_toTopOf="@+id/edtSenha"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/btLogar"
-        app:layout_constraintEnd_toStartOf="@+id/edtSenha"
-        app:layout_constraintHorizontal_bias="0.833"
+        android:id="@+id/imageView3"
+        android:layout_width="343dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/senha" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.551"
+        app:srcCompat="@drawable/burguercontrol" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -36,7 +37,7 @@
         android:layout_marginLeft="52dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toStartOf="@+id/edtLogin"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/login" />
 
@@ -44,47 +45,55 @@
         android:id="@+id/edtSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btLogar"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/btGoogle"
-        android:layout_width="103dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="68dp"
-        android:drawableLeft="@drawable/google"
-        android:text=" Google"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/txtOu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ou"
+        app:layout_constraintBottom_toTopOf="@+id/btGoogle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btLogar"
         android:layout_width="102dp"
         android:layout_height="43dp"
-        android:layout_marginBottom="20dp"
         android:drawableLeft="@android:drawable/ic_menu_send"
         android:text="Login"
         app:layout_constraintBottom_toTopOf="@+id/txtOu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txtOu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="ou"
-        app:layout_constraintBottom_toTopOf="@+id/btGoogle"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/btLogar"
+        app:layout_constraintEnd_toStartOf="@+id/edtSenha"
+        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/senha" />
+
+    <Button
+        android:id="@+id/btGoogle"
+        android:layout_width="103dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="96dp"
+        android:drawableLeft="@drawable/google"
+        android:text=" Google"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
