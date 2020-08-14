@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Pedido"></activity>
+        <activity android:name=".caixa"></activity>
+        <activity android:name=".detalhesPedido" />
+        <activity android:name=".cozinha" />
+        <activity android:name=".Pedido" />
         <activity android:name=".principalMenu" />
         <activity android:name=".MainActivity">
             <intent-filter>

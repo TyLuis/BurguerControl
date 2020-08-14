@@ -13,6 +13,7 @@
         android:layout_width="394dp"
         android:layout_height="660dp"
         android:layout_marginTop="136dp"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,116 +21,92 @@
         app:srcCompat="@drawable/menufundo" />
 
     <ImageView
-        android:id="@+id/imgPedido"
-        android:layout_width="116dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="272dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.281"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pedido" />
-
-    <ImageView
-        android:id="@+id/imgCaixa"
-        android:layout_width="182dp"
-        android:layout_height="133dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="112dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPedido"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/caixa" />
-
-    <ImageView
         android:id="@+id/Logo"
         android:layout_width="267dp"
         android:layout_height="192dp"
         android:layout_marginTop="16dp"
+        android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/burguercontrol" />
 
-    <ImageView
-        android:id="@+id/imgCozinha"
-        android:layout_width="132dp"
-        android:layout_height="124dp"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415"
-        app:srcCompat="@drawable/cozinha" />
-
-    <ImageView
-        android:id="@+id/imgEmpressario"
-        android:layout_width="113dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgCozinha"
-        app:layout_constraintVertical_bias="0.006"
-        app:srcCompat="@drawable/empressario" />
-
-    <TextView
-        android:id="@+id/txtPedido"
+    <Button
+        android:id="@+id/btPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginLeft="112dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:drawableTop="@drawable/pedido"
         android:text="Pedido"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btCaixa"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPedido"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintTop_toBottomOf="@+id/Logo"
+        app:layout_constraintVertical_bias="0.238" />
 
-    <TextView
-        android:id="@+id/txtCozinha"
+    <Button
+        android:id="@+id/btCozinha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="108dp"
-        android:layout_marginRight="108dp"
+        android:drawableTop="@drawable/cozinha"
         android:text="Cozinha"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btGerencia"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgCozinha"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toEndOf="@+id/btPedido"
+        app:layout_constraintTop_toBottomOf="@+id/Logo"
+        app:layout_constraintVertical_bias="0.238" />
 
-    <TextView
-        android:id="@+id/txtCaixa"
+    <Button
+        android:id="@+id/btCaixa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="100dp"
+        android:drawableTop="@drawable/caixa"
         android:text="Caixa"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.335"
+        app:layout_constraintEnd_toStartOf="@+id/btGerencia"
+        app:layout_constraintHorizontal_bias="0.782"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txtGerencia"
+    <Button
+        android:id="@+id/btGerencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="116dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:layout_marginBottom="100dp"
+        android:drawableTop="@drawable/empressario"
         android:text="Gerência"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintStart_toEndOf="@+id/txtCaixa" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="222dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="72dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="339dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="691dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
