@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CBE68F25"
+    android:orientation="vertical"
+    tools:context=".pagarCaixa">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="190dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/burguercontrol" />
+
+    <TextView
+        android:id="@+id/txtPagamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:clickable="false"
+        android:editable="false"
+        android:text="Pagamento"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        app:srcCompat="@drawable/menufundo" />
+
+    <TextView
+        android:id="@+id/txtDetalhePedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Pedido"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+    <EditText
+        android:id="@+id/edtDetalhePedido"
+        android:layout_width="269dp"
+        android:layout_height="209dp"
+        android:clickable="false"
+        android:editable="false"
+        android:ems="10"
+        android:hint="Detalhe do pedido"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDetalhePedido" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="71dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="188dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="340dp" />
+
+    <Spinner
+        android:id="@+id/spnOutrosProdutos"
+        android:layout_width="274dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtDetalhePedido" />
+
+    <Button
+        android:id="@+id/btAddOutro"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="274dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/add"
+        android:text="Adicionar outro produto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spnOutrosProdutos" />
+
+    <TextView
+        android:id="@+id/txtValorTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="10dp"
+        android:clickable="false"
+        android:editable="false"
+        android:text="Valor total:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAddOutro" />
+
+    <EditText
+        android:id="@+id/edtValorTotal"
+        android:layout_width="181dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:clickable="false"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtValorTotal"
+        app:layout_constraintTop_toBottomOf="@+id/btAddOutro" />
+
+    <Button
+        android:id="@+id/btPagarPedido"
+        android:layout_width="125dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:drawableLeft="@drawable/pagamento"
+        android:text="Pagar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtValorTotal"
+        app:layout_constraintVertical_bias="0.198" />
+
+    <Button
+        android:id="@+id/btCancelarPaga"
+        android:layout_width="139dp"
+        android:layout_height="58dp"
+        android:drawableLeft="@drawable/cancelar"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toEndOf="@+id/btPagarPedido"
+        app:layout_constraintTop_toBottomOf="@+id/edtValorTotal"
+        app:layout_constraintVertical_bias="0.198" />
+</androidx.constraintlayout.widget.ConstraintLayout>

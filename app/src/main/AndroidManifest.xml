@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".caixa"></activity>
+        <activity android:name=".BebidaActivity"></activity>
+        <activity android:name=".HamburguerActivity" />
+        <activity android:name=".gerencia" />
+        <activity android:name=".selecionarPedido" />
+        <activity android:name=".pagarCaixa" />
+        <activity android:name=".caixa" />
         <activity android:name=".detalhesPedido" />
         <activity android:name=".cozinha" />
         <activity android:name=".Pedido" />
