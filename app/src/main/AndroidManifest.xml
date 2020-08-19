@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BebidaActivity"></activity>
+        <activity android:name=".addEditOutrosProdutos"></activity>
+        <activity android:name=".addEditBebida" />
+        <activity android:name=".AddEditProdutos" />
+        <activity android:name=".outrosProdutos" />
+        <activity android:name=".BebidaActivity" />
         <activity android:name=".HamburguerActivity" />
         <activity android:name=".gerencia" />
         <activity android:name=".selecionarPedido" />
