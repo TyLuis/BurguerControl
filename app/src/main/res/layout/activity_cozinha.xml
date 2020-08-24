@@ -32,23 +32,8 @@
         android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.324"
         app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgFundo"
-        android:layout_width="453dp"
-        android:layout_height="638dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.918"
-        app:layout_constraintStart_toEndOf="@+id/imgLogo"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
-        app:layout_constraintVertical_bias="0.549"
-        app:srcCompat="@drawable/menufundo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -78,13 +63,24 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="689dp" />
 
+    <ImageView
+        android:id="@+id/imgFundo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        app:srcCompat="@drawable/menufundo" />
+
     <ListView
         android:id="@+id/livPedido"
-        android:layout_width="288dp"
-        android:layout_height="527dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_width="259dp"
+        android:layout_height="473dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

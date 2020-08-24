@@ -31,20 +31,8 @@
         android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.387"
         app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgFundo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
-        app:srcCompat="@drawable/menufundo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
@@ -78,12 +66,36 @@
         android:id="@+id/btAddBebida"
         android:layout_width="119dp"
         android:layout_height="108dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:drawableTop="@drawable/bebida"
         android:text="Bebida"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtGerencia" />
+
+    <Button
+        android:id="@+id/btAddUsuarios"
+        android:layout_width="119dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
+        android:drawableTop="@drawable/usuarios"
+        android:text="Usuários"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAddBebida" />
+
+    <Button
+        android:id="@+id/btAddBurguer"
+        android:layout_width="119dp"
+        android:layout_height="108dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="76dp"
+        android:drawableTop="@drawable/burguer"
+        android:text="hambúrguer"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
     <Button
@@ -92,34 +104,34 @@
         android:layout_height="108dp"
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
-        android:layout_marginTop="44dp"
-        android:drawableTop="@drawable/diversos"
+        android:layout_marginTop="40dp"
+        android:drawableTop="@drawable/outrosProdutos"
         android:text="Outros Produtos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btAddBurguer" />
 
     <Button
-        android:id="@+id/btAddBurguer"
-        android:layout_width="119dp"
+        android:id="@+id/btAddingredientes"
+        android:layout_width="122dp"
         android:layout_height="108dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="140dp"
-        android:drawableTop="@drawable/burguer"
-        android:text="hambúrguer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
-
-    <Button
-        android:id="@+id/btAddUsuarios"
-        android:layout_width="119dp"
-        android:layout_height="108dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginRight="68dp"
-        android:drawableTop="@drawable/usuarios"
-        android:text="Usuários"
+        android:drawableTop="@drawable/diversos"
+        android:text="Ingredientes"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddBebida" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAddDiversos"
+        app:layout_constraintVertical_bias="0.223" />
+
+    <ImageView
+        android:id="@+id/imgFundo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+        app:srcCompat="@drawable/menufundo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

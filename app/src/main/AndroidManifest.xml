@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addEditOutrosProdutos"></activity>
+        <activity android:name=".criarConta"></activity>
+        <activity android:name=".addEditIngrediente" />
+        <activity android:name=".ingredientes" />
+        <activity android:name=".addEditOutrosProdutos" />
         <activity android:name=".addEditBebida" />
         <activity android:name=".AddEditProdutos" />
         <activity android:name=".outrosProdutos" />

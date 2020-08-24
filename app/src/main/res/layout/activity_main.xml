@@ -14,32 +14,22 @@
         android:layout_height="48dp"
         android:layout_marginEnd="76dp"
         android:layout_marginRight="76dp"
+        android:hint="E-mail"
         app:layout_constraintBottom_toTopOf="@+id/edtSenha"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="343dp"
-        android:layout_height="400dp"
-        app:layout_constraintBottom_toTopOf="@+id/edtLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.551"
-        app:srcCompat="@drawable/burguercontrol" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="45dp"
-        android:layout_height="42dp"
+        android:id="@+id/imgUsuSenha"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_marginStart="52dp"
         android:layout_marginLeft="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toStartOf="@+id/edtLogin"
-        app:layout_constraintHorizontal_bias="0.821"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/btLogar"
+        app:layout_constraintEnd_toStartOf="@+id/edtSenha"
+        app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/login" />
+        app:srcCompat="@drawable/senha" />
 
     <EditText
         android:id="@+id/edtSenha"
@@ -48,18 +38,23 @@
         android:layout_marginEnd="76dp"
         android:layout_marginRight="76dp"
         android:ems="10"
+        android:hint="Senha"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btLogar"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/txtOu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ou"
-        app:layout_constraintBottom_toTopOf="@+id/btGoogle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageView
+        android:id="@+id/imgEmail"
+        android:layout_width="45dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/imgUsuSenha"
+        app:layout_constraintEnd_toStartOf="@+id/edtLogin"
+        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/login" />
 
     <Button
         android:id="@+id/btLogar"
@@ -72,28 +67,66 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/btLogar"
-        app:layout_constraintEnd_toStartOf="@+id/edtSenha"
-        app:layout_constraintHorizontal_bias="0.795"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/senha" />
-
     <Button
         android:id="@+id/btGoogle"
         android:layout_width="103dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="144dp"
         android:drawableLeft="@drawable/google"
         android:text=" Google"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtOu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        android:editable="false"
+        android:text="ou"
+        app:layout_constraintBottom_toTopOf="@+id/btGoogle"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="297dp"
+        android:layout_height="360dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/edtLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213"
+        app:srcCompat="@drawable/burguercontrol" />
+
+    <TextView
+        android:id="@+id/txtNaoTem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clickable="false"
+        android:editable="false"
+        android:text="Se caso não possuir conta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btGoogle" />
+
+    <Button
+        android:id="@+id/btCriarConta"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@android:drawable/ic_dialog_info"
+        android:text="  Criar Conta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNaoTem"
+        app:layout_constraintVertical_bias="0.214" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#CBE68F25"
     android:orientation="vertical"
-    tools:context=".AddEditProdutos">
+    tools:context=".criarConta">
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -21,46 +21,18 @@
         app:srcCompat="@drawable/burguercontrol" />
 
     <TextView
-        android:id="@+id/txtProduto"
+        android:id="@+id/txtCriar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="64dp"
         android:clickable="false"
         android:editable="false"
-        android:text="Produto"
+        android:text="Criar Conta"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline43"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="73dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="191dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline45"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="339dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline46"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="661dp" />
 
     <ImageView
         android:id="@+id/imgFundo"
@@ -73,12 +45,41 @@
         app:layout_constraintTop_toBottomOf="@+id/imgLogo"
         app:srcCompat="@drawable/menufundo" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline63"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="191dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="73dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline65"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="339dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="665dp" />
+
     <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="261dp"
+        android:id="@+id/scrollView7"
+        android:layout_width="264dp"
         android:layout_height="382dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo">
 
@@ -87,42 +88,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtIdProduto"
-                android:layout_width="match_parent"
-                android:layout_height="39dp"
-                android:clickable="false"
-                android:editable="false"
-                android:hint="Código do produto" />
-
             <EditText
-                android:id="@+id/edtNomeProduto"
+                android:id="@+id/edtNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Descrição do produto"
+                android:hint="Nome do usuário"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/edtQuantidadeProduto"
+                android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Quantidade para estoque"
-                android:inputType="number" />
+                android:hint="E-mail"
+                android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/edtValorProduto"
+                android:id="@+id/edtSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Valor do produto"
-                android:inputType="number" />
+                android:hint="Senha"
+                android:inputType="textPassword" />
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/btSalvarProduto"
+        android:id="@+id/btSalvarConta"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
@@ -132,12 +125,12 @@
         android:drawableLeft="@drawable/salvar"
         android:text="Salvar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView7" />
 
     <Button
-        android:id="@+id/btCancelarProduto"
+        android:id="@+id/btCancelarConta"
         android:layout_width="wrap_content"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="84dp"
         android:layout_marginRight="84dp"
@@ -145,6 +138,6 @@
         android:drawableLeft="@drawable/cancelar"
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
