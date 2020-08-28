@@ -100,7 +100,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSaldo total" />
+        app:layout_constraintTop_toBottomOf="@+id/edtSaldoTotal" />
 
     <TextView
         android:id="@+id/txtSaldoAtual"
@@ -140,7 +140,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSaldoAtual" />
 
     <EditText
-        android:id="@+id/edtSaldo total"
+        android:id="@+id/edtSaldoTotal"
         android:layout_width="175dp"
         android:layout_height="38dp"
         android:layout_marginStart="4dp"
