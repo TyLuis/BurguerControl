@@ -16,6 +16,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:clickable="false"
+        android:onClick="voltarInicio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/burguercontrol" />
@@ -89,7 +90,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/edtNome"
+                android:id="@+id/edtNomeUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -123,6 +124,7 @@
         android:layout_marginLeft="84dp"
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/salvar"
+        android:onClick="criandoConta"
         android:text="Salvar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView7" />
