@@ -41,23 +41,31 @@ public class MainActivity extends AppCompatActivity {
         EditText etSenha = (EditText)findViewById(R.id.edtSenha);
         String email = etEmail.getText().toString();
         String senha = etSenha.getText().toString();
-        autentica.signInWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Context context = getApplicationContext();
-                if(task.isSuccessful()){
-                    Log.i("signIn","Sucesso ao logar o usuário!");
-                    CharSequence texto = "Usuário logado com sucesso!";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context,texto,duration);
-                    startActivity(vaiMenu);
-                }else{
-                    Log.i("signIn","Erro ao logar o usuário!");
-                    CharSequence texto = "Erro ao realizar o login!";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context,texto,duration);
+
+        if((email!="")&&(senha!="")){
+            autentica.signInWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        String sucesso = "Usuário logado com sucesso!";
+                        Log.i("signIn","Sucesso ao logar o usuário!");
+                        Toast toast = Toast.makeText(getApplicationContext(),sucesso,Toast.LENGTH_SHORT);
+                        toast.show();
+                        startActivity(vaiMenu);
+                    }else{
+                        String falha = "Erro ao logar com o usuário!";
+                        Log.i("signIn","Erro ao logar o usuário!");
+                        Toast toast = Toast.makeText(getApplicationContext(),falha,Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            String erroVazio="Por favor preencha os campos de senha e login corretamente!";
+            Log.i("signIn","Login ou/e Senha vazios");
+            Toast toast = Toast.makeText(getApplicationContext(),erroVazio,Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
     }
 }
