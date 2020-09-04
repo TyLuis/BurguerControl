@@ -38,6 +38,7 @@
         android:layout_marginStart="72dp"
         android:layout_marginLeft="72dp"
         android:drawableTop="@drawable/pedido"
+        android:onClick="vaiPedido"
         android:text="Pedido"
         app:layout_constraintBottom_toTopOf="@+id/btCaixa"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/cozinha"
+        android:onClick="vaiCozinha"
         android:text="Cozinha"
         app:layout_constraintBottom_toTopOf="@+id/btGerencia"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,12 +63,15 @@
         android:id="@+id/btCaixa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginBottom="100dp"
         android:drawableTop="@drawable/caixa"
+        android:onClick="vaiCaixa"
         android:text="Caixa"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btGerencia"
-        app:layout_constraintHorizontal_bias="0.782"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -77,6 +82,7 @@
         android:layout_marginRight="72dp"
         android:layout_marginBottom="100dp"
         android:drawableTop="@drawable/empressario"
+        android:onClick="vaiGerencia"
         android:text="Gerência"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

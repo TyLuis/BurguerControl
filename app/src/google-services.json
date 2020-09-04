@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "609413578185",
+    "firebase_url": "https://burguercontrol.firebaseio.com",
+    "project_id": "burguercontrol",
+    "storage_bucket": "burguercontrol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609413578185:android:a86e35a7d0c3ffbe6efc18",
+        "android_client_info": {
+          "package_name": "com.example.BurguerControl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609413578185-6l1otutgnqq3mas5iro8980cd40455t6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.BurguerControl",
+            "certificate_hash": "0eef22bc97fb148f6b52f36c80ebb14caf796775"
+          }
+        },
+        {
+          "client_id": "609413578185-pqsf28sjc8m7pre4fi2u1c0duel52bk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8t_hhmmyTFKvXtloamfgVuzLCE_1yR0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609413578185-pqsf28sjc8m7pre4fi2u1c0duel52bk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
