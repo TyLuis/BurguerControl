@@ -8,6 +8,35 @@
     android:orientation="vertical"
     tools:context=".outrosProdutos">
 
+    <ImageButton
+        android:id="@+id/btVoltar11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:onClick="voltar"
+        app:layout_constraintEnd_toStartOf="@+id/btSair11"
+        app:layout_constraintStart_toEndOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageButton
+        android:id="@+id/btSair11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:onClick="sairSistema"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/btVoltar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="190dp"
@@ -24,13 +53,14 @@
         android:id="@+id/txtOutros"
         android:layout_width="163dp"
         android:layout_height="101dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="72dp"
         android:clickable="false"
         android:editable="false"
         android:text="Outros Produtos"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent" />
 

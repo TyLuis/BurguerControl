@@ -8,6 +8,32 @@
     android:orientation="vertical"
     tools:context=".addEditOutrosProdutos">
 
+    <ImageButton
+        android:id="@+id/btSair4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:onClick="sairSistema"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/btVoltar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/btVoltar4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="8dp"
+        android:onClick="voltar"
+        app:layout_constraintStart_toEndOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="192dp"
@@ -22,15 +48,16 @@
 
     <TextView
         android:id="@+id/txtOutrosProdutos"
-        android:layout_width="150dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="184dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="60dp"
         android:clickable="false"
         android:editable="false"
         android:text="Outro Produto"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent" />
 

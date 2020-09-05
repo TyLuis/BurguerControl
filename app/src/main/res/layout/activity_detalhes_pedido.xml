@@ -8,6 +8,30 @@
     android:orientation="vertical"
     tools:context=".detalhesPedido">
 
+    <ImageButton
+        android:id="@+id/btSair8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="sairSistema"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toEndOf="@+id/btVoltar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/btVoltar8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="16dp"
+        android:onClick="voltar"
+        app:layout_constraintStart_toEndOf="@+id/logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="190dp"
@@ -24,14 +48,14 @@
         android:id="@+id/txtDetalhes"
         android:layout_width="191dp"
         android:layout_height="102dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="68dp"
         android:clickable="false"
         android:editable="false"
         android:text="Detalhes do pedido"
         android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -21,13 +21,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth autenticaMain;
+    private FirebaseAuth autentica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        autenticaMain = FirebaseAuth.getInstance();
+        autentica = FirebaseAuth.getInstance();
     }
 
     public void criarContaChamada(View view){
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         String senha = etSenha.getText().toString();
 
         if((email!="")&&(senha!="")){
-            autenticaMain.signInWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            autentica.signInWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){

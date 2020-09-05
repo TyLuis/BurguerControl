@@ -8,6 +8,32 @@
     android:orientation="vertical"
     tools:context=".gerencia">
 
+    <ImageButton
+        android:id="@+id/btVoltar9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="24dp"
+        android:onClick="voltar"
+        app:layout_constraintStart_toEndOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageButton
+        android:id="@+id/btSair9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:onClick="sairSistema"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/btVoltar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="190dp"
@@ -24,13 +50,14 @@
         android:id="@+id/txtGerencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="76dp"
         android:clickable="false"
         android:editable="false"
         android:text="Gerência"
         android:textColor="#000000"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,10 +93,11 @@
         android:id="@+id/btAddBebida"
         android:layout_width="119dp"
         android:layout_height="108dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="76dp"
         android:layout_marginRight="76dp"
         android:drawableTop="@drawable/bebida"
+        android:onClick="bebida"
         android:text="Bebida"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGerencia" />
@@ -94,6 +122,7 @@
         android:layout_marginLeft="72dp"
         android:layout_marginTop="76dp"
         android:drawableTop="@drawable/burguer"
+        android:onClick="burguer"
         android:text="hambúrguer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
@@ -106,6 +135,7 @@
         android:layout_marginLeft="72dp"
         android:layout_marginTop="40dp"
         android:drawableTop="@drawable/outrosprodutos"
+        android:onClick="outrosProdutos"
         android:text="Outros Produtos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btAddBurguer" />
@@ -115,6 +145,7 @@
         android:layout_width="122dp"
         android:layout_height="108dp"
         android:drawableTop="@drawable/diversos"
+        android:onClick="ingredientes"
         android:text="Ingredientes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

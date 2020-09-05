@@ -1,7 +1,7 @@
-package com.example.BurguerControl;
+package com.example.BurguerControl.objetos;
 
 public class Usuario {
-    private Integer idUsuario;
+    private String idUsuario;
     private String nomeUsuario;
     private String emailUsuario;
     private String senhaUsuario;
@@ -9,11 +9,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Integer getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 

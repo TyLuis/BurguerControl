@@ -8,6 +8,20 @@
     android:orientation="vertical"
     tools:context=".selecionarPedido">
 
+    <ImageButton
+        android:id="@+id/btSair13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
+        android:onClick="sairSistema"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/btVoltar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="190dp"
@@ -23,7 +37,7 @@
         android:id="@+id/txtSelecionarPedido"
         android:layout_width="228dp"
         android:layout_height="97dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="68dp"
         android:text="Selecionar Pedido"
         android:textColor="#000000"
         android:textSize="36sp"
@@ -111,6 +125,7 @@
         android:layout_marginEnd="72dp"
         android:layout_marginRight="72dp"
         android:drawableLeft="@android:drawable/ic_menu_revert"
+        android:onClick="voltar"
         android:text="Voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvSelecionePedido" />

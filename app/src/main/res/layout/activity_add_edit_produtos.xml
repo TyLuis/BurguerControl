@@ -8,6 +8,32 @@
     android:orientation="vertical"
     tools:context=".AddEditProdutos">
 
+    <ImageButton
+        android:id="@+id/btVoltar5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:onClick="voltar"
+        app:layout_constraintStart_toEndOf="@+id/imgLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+    <ImageButton
+        android:id="@+id/btSair5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:onClick="sairSistema"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toEndOf="@+id/btVoltar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="192dp"
@@ -24,13 +50,14 @@
         android:id="@+id/txtProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="68dp"
         android:clickable="false"
         android:editable="false"
-        android:text="Produto"
+        android:text="Hambúrguer"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,14 +120,14 @@
                 android:layout_height="39dp"
                 android:clickable="false"
                 android:editable="false"
-                android:hint="Código do produto" />
+                android:hint="Código do hambúrguer" />
 
             <EditText
                 android:id="@+id/edtNomeProduto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Descrição do produto"
+                android:hint="Descrição do hambúrguer"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -116,8 +143,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Valor do produto"
-                android:inputType="number" />
+                android:hint="Valor do hambúrguer"
+                android:inputType="number|numberDecimal" />
         </LinearLayout>
     </ScrollView>
 
@@ -129,8 +156,12 @@
         android:layout_marginStart="84dp"
         android:layout_marginLeft="84dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
         android:drawableLeft="@drawable/salvar"
+        android:onClick="salvarBurguer"
         android:text="Salvar"
+        app:layout_constraintEnd_toStartOf="@+id/btCancelarProduto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
