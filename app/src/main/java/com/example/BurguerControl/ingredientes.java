@@ -46,4 +46,9 @@ public class ingredientes extends AppCompatActivity {
         Intent intent = new Intent(this, gerencia.class);
         startActivity(intent);
     }
+
+    public void addIngrediente (View view){
+        Intent intent = new Intent(this,addEditIngrediente.class);
+        startActivity(intent);
+    }
 }

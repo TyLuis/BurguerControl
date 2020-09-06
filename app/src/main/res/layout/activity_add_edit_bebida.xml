@@ -22,18 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete" />
 
-    <ImageButton
-        android:id="@+id/btVoltar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:onClick="voltar"
-        app:layout_constraintStart_toEndOf="@+id/imgLogo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
-
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="192dp"
@@ -157,6 +145,7 @@
         android:layout_marginLeft="84dp"
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/salvar"
+        android:onClick="salvarBebida"
         android:text="Salvar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView4" />
@@ -170,6 +159,7 @@
         android:layout_marginRight="84dp"
         android:background="#EA2B2B"
         android:drawableLeft="@drawable/cancelar"
+        android:onClick="voltar"
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView4" />

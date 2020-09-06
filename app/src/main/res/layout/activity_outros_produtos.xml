@@ -109,6 +109,7 @@
         android:layout_height="39dp"
         android:layout_marginTop="5dp"
         android:drawableLeft="@drawable/add"
+        android:onClick="addOutros"
         android:text="Adicionar outros produtos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

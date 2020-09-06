@@ -46,4 +46,9 @@ public class outrosProdutos extends AppCompatActivity {
         Intent intent = new Intent(this, gerencia.class);
         startActivity(intent);
     }
+
+    public void addOutros(View view){
+        Intent intent = new Intent(this,addEditOutrosProdutos.class);
+        startActivity(intent);
+    }
 }
