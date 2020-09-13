@@ -69,21 +69,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="191dp" />
+        app:layout_constraintGuide_begin="181dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline36"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="73dp" />
+        app:layout_constraintGuide_begin="65dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline37"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="337dp" />
+        app:layout_constraintGuide_begin="347dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline38"
@@ -92,50 +92,44 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="663dp" />
 
-    <ListView
-        android:id="@+id/lvBebida"
-        android:layout_width="264dp"
-        android:layout_height="344dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
-
     <Button
         android:id="@+id/btAddBebida"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="266dp"
-        android:layout_height="39dp"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="5dp"
         android:drawableLeft="@drawable/add"
         android:onClick="addBebida"
-        android:text="Adicionar Bebida"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Salvar"
+        app:layout_constraintEnd_toStartOf="@+id/btEditarBebida"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvBebida" />
 
     <Button
         android:id="@+id/btEditarBebida"
-        android:layout_width="266dp"
-        android:layout_height="39dp"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
         android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:text="Editar Bebida"
+        android:text="Editar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddBebida" />
+        app:layout_constraintTop_toBottomOf="@+id/lvBebida" />
 
     <Button
         android:id="@+id/btExcluirBebida"
-        android:layout_width="266dp"
-        android:layout_height="39dp"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
         android:layout_marginTop="5dp"
         android:background="#EA2B2B"
         android:drawableLeft="@drawable/minus"
-        android:text="Excluir Bebida"
+        android:text="Excluir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btEditarBebida" />
+        app:layout_constraintTop_toBottomOf="@+id/btAddBebida" />
 
     <ImageView
         android:id="@+id/imgFundo"
@@ -147,4 +141,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo"
         app:srcCompat="@drawable/menufundo" />
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="282dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/edtNomeBebida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Descrição da bebida"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/edtQuantidadeBebida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Quantidade da bebida"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edtValorBebida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Valor da bebida"
+                android:inputType="number|numberDecimal" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/lvBebida"
+        android:layout_width="279dp"
+        android:layout_height="217dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imgFundo"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

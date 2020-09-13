@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class HamburguerActivity extends AppCompatActivity {
     FirebaseAuth autentica = FirebaseAuth.getInstance();
@@ -32,38 +34,29 @@ public class HamburguerActivity extends AppCompatActivity {
     private ArrayAdapter<Burguer> arrayAdapterBurger;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    Burguer burguerSelecionado;
+    EditText etDescricaoBurguer, etQuantBurguer,etValorBurguer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hamburguer);
         listBurguer = (ListView)findViewById(R.id.lvBurguer);
+        etDescricaoBurguer = findViewById(R.id.edtNomeProduto);
+        etQuantBurguer = findViewById(R.id.edtQuantidadeProduto);
+        etValorBurguer = findViewById(R.id.edtValorProduto);
 
         inicializarFirebase();
-        eventoDataBase();
-        /*listBurguer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                burguerSelecionado = (Burguer)parent.getItemAtPosition(position);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
+        eventoDataBaseBebida();
     }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(HamburguerActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
     }
 
-    private void eventoDataBase() {
+    private void eventoDataBaseBebida() {
         databaseReference.child("Burguer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -110,12 +103,40 @@ public class HamburguerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addBurguer(View view){
-        Intent intent = new Intent(this, AddEditProdutos.class);
-        startActivity(intent);
-    }
+        public void salvarBurguer(View view){
+            AlertDialog.Builder msg = new AlertDialog.Builder(this);
+            msg.setTitle("Salvando hambúrguer");
+            msg.setMessage("Deseja realmente salvar esse hambúrguer?");
+            msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Burguer burguer = new Burguer();
+                    burguer.setIdBurguer(UUID.randomUUID().toString());
+                    burguer.setDescricaoBurguer(etDescricaoBurguer.getText().toString());
+                    burguer.setEstoqueBurguer(Integer.valueOf(etQuantBurguer.getText().toString()));
+                    burguer.setValorBurguer(Float.valueOf(etValorBurguer.getText().toString()));
 
-    public void editarBurguer (View view){
+                    databaseReference.child("Burguer").child(burguer.getIdBurguer()).setValue(burguer);
+                    limparcampos();
+                }
+            });
+            msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    Toast.makeText(HamburguerActivity.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+                }
+            });
+            AlertDialog alert = msg.create();
+            alert.show();
+        }
 
-    }
+        private void limparcampos() {
+            etValorBurguer.setText("");
+            etQuantBurguer.setText("");
+            etDescricaoBurguer.setText("");
+            Toast.makeText(HamburguerActivity.this,"Hambúrguer salvo com sucesso!",Toast.LENGTH_LONG).show();
+        }
+
+
 }

@@ -65,74 +65,70 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="190dp" />
+        app:layout_constraintGuide_begin="184dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="73dp" />
+        app:layout_constraintGuide_begin="66dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="340dp" />
+        app:layout_constraintGuide_begin="347dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="667dp" />
-
-    <ListView
-        android:id="@+id/lvBurguer"
-        android:layout_width="264dp"
-        android:layout_height="344dp"
-        android:layout_marginTop="48dp"
-        android:choiceMode="singleChoice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+        app:layout_constraintGuide_begin="674dp" />
 
     <Button
         android:id="@+id/btAddBurguer"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="266dp"
-        android:layout_height="39dp"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
         android:drawableLeft="@drawable/add"
-        android:onClick="addBurguer"
-        android:text="Adicionar hambúruger"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="salvarBurguer"
+        android:text="Salvar"
+        app:layout_constraintEnd_toStartOf="@+id/btEdtBurguer"
+        app:layout_constraintHorizontal_bias="0.681"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvBurguer" />
 
     <Button
         android:id="@+id/btEdtBurguer"
-        android:layout_width="266dp"
-        android:layout_height="39dp"
+        android:layout_width="118dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
         android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:text="Editar Hambúrguer"
+        android:text="Editar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddBurguer" />
+        app:layout_constraintTop_toBottomOf="@+id/lvBurguer" />
 
     <Button
         android:id="@+id/btExcluirBurguer"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="266dp"
-        android:layout_height="39dp"
+        android:layout_width="118dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
         android:background="#EA2B2B"
         android:drawableLeft="@drawable/minus"
-        android:text="Excluir Hambúrguer"
+        android:text="Excluir"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btEdtBurguer" />
+        app:layout_constraintTop_toBottomOf="@+id/btAddBurguer"
+        app:layout_constraintVertical_bias="0.109" />
 
     <ImageView
         android:id="@+id/imgFundo"
@@ -144,4 +140,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo"
         app:srcCompat="@drawable/menufundo" />
+
+    <ScrollView
+        android:id="@+id/scrollView8"
+        android:layout_width="282dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtNomeProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Descrição do hambúrguer"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/edtQuantidadeProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Quantidade para estoque"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/edtValorProduto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Valor do hambúrguer"
+                android:inputType="number|numberDecimal" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/lvBurguer"
+        android:layout_width="279dp"
+        android:layout_height="217dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView8" />
 </androidx.constraintlayout.widget.ConstraintLayout>
