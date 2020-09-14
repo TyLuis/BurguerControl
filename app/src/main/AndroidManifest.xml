@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".criarConta"></activity>
-        <activity android:name=".addEditIngrediente" />
         <activity android:name=".ingredientes" />
         <activity android:name=".addEditOutrosProdutos" />
         <activity android:name=".outrosProdutos" />

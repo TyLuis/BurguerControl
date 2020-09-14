@@ -122,29 +122,6 @@
                 android:editable="false"
                 android:hint="Código de outros produtos" />
 
-            <EditText
-                android:id="@+id/edtNomeOutros"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Descrição"
-                android:inputType="textPersonName" />
-
-            <EditText
-                android:id="@+id/edtQuantidadeOutros"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Quantidade"
-                android:inputType="number" />
-
-            <EditText
-                android:id="@+id/edtValorOutros"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Valor"
-                android:inputType="number|numberDecimal" />
         </LinearLayout>
     </ScrollView>
 
