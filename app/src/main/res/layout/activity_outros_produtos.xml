@@ -92,16 +92,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="341dp" />
 
-    <ListView
-        android:id="@+id/lvOutrosProdutos"
-        android:layout_width="282dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView6" />
-
     <Button
         android:id="@+id/btAddOutros"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -152,6 +142,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogo"
         app:srcCompat="@drawable/menufundo" />
+
+    <ListView
+        android:id="@+id/lvOutrosProdutos"
+        android:layout_width="282dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView6" />
 
     <ScrollView
         android:id="@+id/scrollView6"

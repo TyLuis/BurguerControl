@@ -35,6 +35,7 @@ public class HamburguerActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     EditText etDescricaoBurguer, etQuantBurguer,etValorBurguer;
+    Burguer burguerSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,21 @@ public class HamburguerActivity extends AppCompatActivity {
 
         inicializarFirebase();
         eventoDataBaseBebida();
+
+        listBurguer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                burguerSelecionado = (Burguer)parent.getItemAtPosition(position);
+                etDescricaoBurguer.setText(burguerSelecionado.getDescricaoBurguer());
+                etQuantBurguer.setText(burguerSelecionado.getEstoqueBurguer());
+                etValorBurguer.setText(burguerSelecionado.getValorBurguer().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void inicializarFirebase() {
@@ -103,7 +119,7 @@ public class HamburguerActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-        public void salvarBurguer(View view){
+    public void salvarBurguer(View view){
             AlertDialog.Builder msg = new AlertDialog.Builder(this);
             msg.setTitle("Salvando hambúrguer");
             msg.setMessage("Deseja realmente salvar esse hambúrguer?");
@@ -129,14 +145,38 @@ public class HamburguerActivity extends AppCompatActivity {
             });
             AlertDialog alert = msg.create();
             alert.show();
-        }
+    }
 
-        private void limparcampos() {
+    private void limparcampos() {
             etValorBurguer.setText("");
             etQuantBurguer.setText("");
             etDescricaoBurguer.setText("");
             Toast.makeText(HamburguerActivity.this,"Hambúrguer salvo com sucesso!",Toast.LENGTH_LONG).show();
-        }
+    }
 
+    public void editaBurguer(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Editando hambúrguer");
+        msg.setMessage("Deseja realmente editar esse hambúrguer?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Burguer b = new Burguer();
+                b.setIdBurguer(burguerSelecionado.getIdBurguer());
+                b.setDescricaoBurguer(etDescricaoBurguer.getText().toString().trim());
+                b.setEstoqueBurguer(Integer.valueOf(etQuantBurguer.getText().toString().trim()));
+                b.setValorBurguer(Float.valueOf(etValorBurguer.getText().toString().trim()));
 
+                databaseReference.child("Burguer").child(b.getIdBurguer()).setValue(b);
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(HamburguerActivity.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

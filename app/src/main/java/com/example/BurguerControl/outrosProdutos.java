@@ -55,8 +55,8 @@ public class outrosProdutos extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listaOutros.clear();
                 for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
-                    OutroProduto outroProduto= objSnapshot.getValue(OutroProduto.class);
-                    listaOutros.add(outroProduto);
+                    OutroProduto outreProducts = objSnapshot.getValue(OutroProduto.class);
+                    listaOutros.add(outreProducts);
                 }
                 arrayAdapterOutros = new ArrayAdapter<OutroProduto>(outrosProdutos.this,android.R.layout.simple_list_item_1,listaOutros);
                 listOutros.setAdapter(arrayAdapterOutros);
