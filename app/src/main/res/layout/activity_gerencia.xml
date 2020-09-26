@@ -103,18 +103,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtGerencia" />
 
     <Button
-        android:id="@+id/btAddUsuarios"
-        android:layout_width="119dp"
-        android:layout_height="108dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
-        android:drawableTop="@drawable/usuarios"
-        android:text="Usuários"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddBebida" />
-
-    <Button
         android:id="@+id/btAddBurguer"
         android:layout_width="119dp"
         android:layout_height="108dp"
@@ -144,15 +132,18 @@
         android:id="@+id/btAddingredientes"
         android:layout_width="122dp"
         android:layout_height="108dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:drawableTop="@drawable/diversos"
         android:onClick="ingredientes"
         android:text="Ingredientes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddDiversos"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btAddDiversos"
+        app:layout_constraintTop_toBottomOf="@+id/btAddBebida"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imgFundo"

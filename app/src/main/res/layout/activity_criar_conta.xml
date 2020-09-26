@@ -25,6 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
         android:clickable="false"
         android:editable="false"
         android:text="Criar Conta"
@@ -90,14 +92,6 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/edtNomeUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Nome do usuário"
-                android:inputType="textPersonName" />
-
-            <EditText
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,11 +114,14 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/salvar"
+        android:onClick="criandoConta"
         android:text="Salvar"
+        app:layout_constraintEnd_toStartOf="@+id/btCancelarConta"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView7" />
 
@@ -133,24 +130,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
         android:background="#EA2B2B"
         android:drawableLeft="@drawable/cancelar"
         android:onClick="alertCancelar"
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView7" />
-
-    <ImageButton
-        android:id="@+id/btVoltar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="voltarInicio"
-        app:layout_constraintBottom_toTopOf="@+id/txtCriar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgLogo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

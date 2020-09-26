@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
+    EditText etEmail, etSenha;
     private FirebaseAuth autentica;
 
     @Override
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         autentica = FirebaseAuth.getInstance();
+
     }
 
     public void criarContaChamada(View view){
@@ -39,9 +40,8 @@ public class MainActivity extends AppCompatActivity {
         final Intent vaiMenu = new Intent(this,principalMenu.class);
         EditText etEmail = (EditText)findViewById(R.id.edtLogin);
         EditText etSenha = (EditText)findViewById(R.id.edtSenha);
-        String email = etEmail.getText().toString();
-        String senha = etSenha.getText().toString();
-
+        String email = etEmail.getText().toString().trim();
+        String senha = etSenha.getText().toString().trim();
         if((email!="")&&(senha!="")){
             autentica.signInWithEmailAndPassword(email,senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override

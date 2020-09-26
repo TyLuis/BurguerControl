@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.BurguerControl.adaptador.HamburguerAdaptador;
 import com.example.BurguerControl.objetos.Burguer;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class HamburguerActivity extends AppCompatActivity {
+public class HamburguerActivity extends AppCompatActivity{
     FirebaseAuth autentica = FirebaseAuth.getInstance();
     ListView listBurguer;
     private ArrayList<Burguer> listaBurguer = new ArrayList<Burguer>();
@@ -82,6 +83,7 @@ public class HamburguerActivity extends AppCompatActivity {
                     listaBurguer.add(burguer);
                 }
                 arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_1,listaBurguer);
+                /*HamburguerAdaptador hamburguerAdaptador = new HamburguerAdaptador(listaBurguer,this);*/
                 listBurguer.setAdapter(arrayAdapterBurger);
             }
             @Override
@@ -179,4 +181,5 @@ public class HamburguerActivity extends AppCompatActivity {
             }
         });
     }
+    
 }

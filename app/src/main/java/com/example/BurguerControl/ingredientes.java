@@ -28,7 +28,7 @@ import java.util.UUID;
 
 public class ingredientes extends AppCompatActivity {
     FirebaseAuth autentica = FirebaseAuth.getInstance();
-    EditText etDescricaoIngrediente;
+    EditText etDescricaoIngrediente, etValorIngrediente;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ListView listIngredientes;
@@ -41,6 +41,7 @@ public class ingredientes extends AppCompatActivity {
         setContentView(R.layout.activity_ingredientes);
         etDescricaoIngrediente = (EditText)findViewById(R.id.edtNomeIngrediente);
         listIngredientes = (ListView)findViewById(R.id.lvIngredientes);
+        etValorIngrediente = (EditText)findViewById(R.id.edtValorIngrediente);
 
         inicializarFirebase();
         eventoDataBase();
@@ -109,6 +110,7 @@ public class ingredientes extends AppCompatActivity {
                 Ingrediente ingrediente = new Ingrediente();
                 ingrediente.setIdIngrediente(UUID.randomUUID().toString());
                 ingrediente.setDescricaoIngrediente(etDescricaoIngrediente.getText().toString());
+                ingrediente.setValorIngrediente(Float.valueOf(etValorIngrediente.getText().toString()));
 
                 databaseReference.child("Ingrediente").child(ingrediente.getIdIngrediente()).setValue(ingrediente);
                 limparcampos();

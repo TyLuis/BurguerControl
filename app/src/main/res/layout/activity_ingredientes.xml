@@ -176,6 +176,14 @@
                 android:ems="10"
                 android:hint="Descrição do Ingrediente"
                 android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/edtValorIngrediente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Valor do ingrediente"
+                android:inputType="numberDecimal" />
         </LinearLayout>
     </ScrollView>
 
