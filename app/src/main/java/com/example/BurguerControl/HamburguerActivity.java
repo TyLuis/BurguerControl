@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,27 +51,21 @@ public class HamburguerActivity extends AppCompatActivity{
 
         inicializarFirebase();
         eventoDataBaseBebida();
-
-        listBurguer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        listBurguer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 burguerSelecionado = (Burguer)parent.getItemAtPosition(position);
                 etDescricaoBurguer.setText(burguerSelecionado.getDescricaoBurguer());
                 etQuantBurguer.setText(burguerSelecionado.getEstoqueBurguer());
                 etValorBurguer.setText(burguerSelecionado.getValorBurguer().toString());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(HamburguerActivity.this);
+
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -83,7 +79,7 @@ public class HamburguerActivity extends AppCompatActivity{
                     listaBurguer.add(burguer);
                 }
                 arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_1,listaBurguer);
-                /*HamburguerAdaptador hamburguerAdaptador = new HamburguerAdaptador(listaBurguer,this);*/
+                HamburguerAdaptador hamburguerAdaptador = new HamburguerAdaptador(listaBurguer,HamburguerActivity.this);
                 listBurguer.setAdapter(arrayAdapterBurger);
             }
             @Override
@@ -116,7 +112,7 @@ public class HamburguerActivity extends AppCompatActivity{
     }
 
     public void voltar(View view){
-
+        finish();
         Intent intent = new Intent(this, gerencia.class);
         startActivity(intent);
     }
@@ -181,5 +177,4 @@ public class HamburguerActivity extends AppCompatActivity{
             }
         });
     }
-    
 }

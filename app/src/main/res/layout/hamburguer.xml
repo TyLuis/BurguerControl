@@ -185,11 +185,10 @@
 
     <ListView
         android:id="@+id/lvBurguer"
-        style="@style/Widget.AppCompat.ListView"
+        style="@style/Widget.AppCompat.Light.ListView.DropDown"
         android:layout_width="279dp"
         android:layout_height="217dp"
         android:layout_marginTop="5dp"
-        android:choiceMode="singleChoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView8" />

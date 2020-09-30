@@ -1,6 +1,7 @@
 package com.example.BurguerControl.adaptador;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,10 +9,8 @@ import android.widget.TextView;
 
 import com.example.BurguerControl.R;
 import com.example.BurguerControl.objetos.Burguer;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HamburguerAdaptador extends BaseAdapter {
     private final ArrayList<Burguer> burguers;
@@ -39,12 +38,8 @@ public class HamburguerAdaptador extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View linha = convertView;
+        View linha = activity.getLayoutInflater().inflate(R.layout.hamburguer,parent,false);;
         Burguer burguer = burguers.get(position);
-
-        if (linha==null){
-            linha = this.activity.getLayoutInflater().inflate(R.layout.hamburguer,parent,false);
-        }
 
         TextView nome = (TextView)linha.findViewById(R.id.edtNomeProduto);
         TextView quantidade = (TextView)linha.findViewById(R.id.edtQuantidadeProduto);

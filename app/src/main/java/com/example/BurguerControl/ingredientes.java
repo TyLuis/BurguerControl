@@ -69,7 +69,7 @@ public class ingredientes extends AppCompatActivity {
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(ingredientes.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.setPersistenceEnabled(true);
+      ;
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 

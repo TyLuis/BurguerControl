@@ -107,9 +107,9 @@
 
     <ListView
         android:id="@+id/lvIngredientes"
-        android:layout_width="282dp"
-        android:layout_height="278dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="283dp"
+        android:layout_height="272dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView4" />
@@ -156,8 +156,8 @@
 
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="282dp"
-        android:layout_height="52dp"
+        android:layout_width="273dp"
+        android:layout_height="93dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

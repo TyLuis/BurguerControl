@@ -71,7 +71,7 @@ public class outrosProdutos extends AppCompatActivity {
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(outrosProdutos.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.setPersistenceEnabled(true);
+
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 

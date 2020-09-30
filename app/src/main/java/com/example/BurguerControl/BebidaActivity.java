@@ -53,7 +53,7 @@ public class BebidaActivity extends AppCompatActivity {
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(BebidaActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.setPersistenceEnabled(true);
+       ;
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
