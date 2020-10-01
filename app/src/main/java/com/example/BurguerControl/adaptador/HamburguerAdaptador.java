@@ -38,12 +38,16 @@ public class HamburguerAdaptador extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View linha = activity.getLayoutInflater().inflate(R.layout.hamburguer,parent,false);;
+        View linha = convertView;
+        if(linha==null){
+            linha = activity.getLayoutInflater().inflate(R.layout.celular_hamburguer,parent,false);
+        }
+
         Burguer burguer = burguers.get(position);
 
-        TextView nome = (TextView)linha.findViewById(R.id.edtNomeProduto);
-        TextView quantidade = (TextView)linha.findViewById(R.id.edtQuantidadeProduto);
-        TextView valor = (TextView)linha.findViewById(R.id.edtValorProduto);
+        TextView nome = (TextView)linha.findViewById(R.id.tvCelulaDescricao);
+        TextView quantidade = (TextView)linha.findViewById(R.id.tvCelulaQuantidade);
+        TextView valor = (TextView)linha.findViewById(R.id.tvCelulaValor);
 
         nome.setText(burguer.getDescricaoBurguer());
         valor.setText(String.valueOf(burguer.getValorBurguer()));

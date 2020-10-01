@@ -69,6 +69,12 @@ public class HamburguerActivity extends AppCompatActivity{
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
+    @Override
+    protected void onResume() {
+        eventoDataBaseBebida();
+        super.onResume();
+    }
+
     private void eventoDataBaseBebida() {
         databaseReference.child("Burguer").addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,7 +86,7 @@ public class HamburguerActivity extends AppCompatActivity{
                 }
                 arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_1,listaBurguer);
                 HamburguerAdaptador hamburguerAdaptador = new HamburguerAdaptador(listaBurguer,HamburguerActivity.this);
-                listBurguer.setAdapter(arrayAdapterBurger);
+                listBurguer.setAdapter(hamburguerAdaptador);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
