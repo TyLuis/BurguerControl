@@ -7,29 +7,23 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tvCelulaValor"
+        android:id="@+id/tvCelulaDescIngrediente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCelulaQuantidade" />
-
-    <TextView
-        android:id="@+id/tvCelulaDescricao"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvCelulaQuantidade"
+        android:id="@+id/tvCelulaValorIngrediente"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCelulaDescricao" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCelulaDescIngrediente" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.BurguerControl.adaptador.BebidaAdaptador;
 import com.example.BurguerControl.objetos.Bebida;
 import com.example.BurguerControl.objetos.Burguer;
 import com.google.firebase.FirebaseApp;
@@ -35,6 +37,7 @@ public class BebidaActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     EditText etDescricaoBebida, etQuantidadeBebida, etValorBebida;
+    Bebida bebidaSelecionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +51,28 @@ public class BebidaActivity extends AppCompatActivity {
 
         inicializarFirebase();
         eventoDataBase();
+
+        listBebida.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                bebidaSelecionada = (Bebida)parent.getItemAtPosition(position);
+                etDescricaoBebida.setText(bebidaSelecionada.getDescricaoBebida());
+                etQuantidadeBebida.setText(String.valueOf(bebidaSelecionada.getQuantidadeBebida()));
+                etValorBebida.setText(String.valueOf(bebidaSelecionada.getValorBebida()));
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        inicializarFirebase();
+        eventoDataBase();
+        super.onResume();
     }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(BebidaActivity.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
-       ;
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -66,7 +85,8 @@ public class BebidaActivity extends AppCompatActivity {
                     Bebida bebida = objSnapshot.getValue(Bebida.class);
                     listaBebida.add(bebida);
                 }
-                arrayAdapterBebida = new ArrayAdapter<Bebida>(BebidaActivity.this,android.R.layout.simple_list_item_1,listaBebida);
+                arrayAdapterBebida = new ArrayAdapter<Bebida>(BebidaActivity.this,android.R.layout.simple_list_item_single_choice,listaBebida);
+                BebidaAdaptador bebidaAdaptador = new BebidaAdaptador(listaBebida,BebidaActivity.this);
                 listBebida.setAdapter(arrayAdapterBebida);
             }
             @Override
@@ -129,6 +149,58 @@ public class BebidaActivity extends AppCompatActivity {
         });
         AlertDialog alert = msg.create();
         alert.show();
+    }
+
+    public void editarBebida(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Editando bebida");
+        msg.setMessage("Deseja realmente editar essa bebida?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Bebida bebi = new Bebida();
+                bebi.setIdBebida(bebidaSelecionada.getIdBebida());
+                bebi.setDescricaoBebida(etDescricaoBebida.getText().toString().trim());
+                bebi.setQuantidadeBebida(Integer.valueOf(etQuantidadeBebida.getText().toString().trim()));
+                bebi.setValorBebida(Float.valueOf(etValorBebida.getText().toString().trim()));
+
+                databaseReference.child("Bebida").child(bebi.getIdBebida()).setValue(bebi);
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(BebidaActivity.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
+    }
+
+    public void excluirBebida(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Excluindo bebida");
+        msg.setMessage("Deseja realmente excluir essa bebida?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Bebida bebida = new Bebida();
+                bebida.setIdBebida(bebidaSelecionada.getIdBebida());
+                databaseReference.child("Bebida").child(bebida.getIdBebida()).removeValue();
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(BebidaActivity.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
     }
 
     private void limparcampos() {

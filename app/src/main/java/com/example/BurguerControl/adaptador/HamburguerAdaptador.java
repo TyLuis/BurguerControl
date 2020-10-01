@@ -1,7 +1,6 @@
 package com.example.BurguerControl.adaptador;
 
 import android.app.Activity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,12 +10,13 @@ import com.example.BurguerControl.R;
 import com.example.BurguerControl.objetos.Burguer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HamburguerAdaptador extends BaseAdapter {
-    private final ArrayList<Burguer> burguers;
+    private final List<Burguer> burguers;
     private final Activity activity;
 
-    public HamburguerAdaptador(ArrayList<Burguer> burguers, Activity activity) {
+    public HamburguerAdaptador(List<Burguer> burguers, Activity activity) {
         this.burguers = burguers;
         this.activity = activity;
     }
@@ -40,7 +40,7 @@ public class HamburguerAdaptador extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View linha = convertView;
         if(linha==null){
-            linha = activity.getLayoutInflater().inflate(R.layout.celular_hamburguer,parent,false);
+            linha = activity.getLayoutInflater().inflate(R.layout.celula_hamburguer,parent,false);
         }
 
         Burguer burguer = burguers.get(position);
@@ -50,6 +50,7 @@ public class HamburguerAdaptador extends BaseAdapter {
         TextView valor = (TextView)linha.findViewById(R.id.tvCelulaValor);
 
         nome.setText(burguer.getDescricaoBurguer());
+        quantidade.setText(String.valueOf(burguer.getEstoqueBurguer()));
         valor.setText(String.valueOf(burguer.getValorBurguer()));
         return linha;
     }

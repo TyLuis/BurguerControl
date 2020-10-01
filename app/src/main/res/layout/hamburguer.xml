@@ -123,6 +123,7 @@
         android:layout_marginTop="5dp"
         android:background="#EA2B2B"
         android:drawableLeft="@drawable/minus"
+        android:onClick="excluirBurguer"
         android:text="Excluir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -185,10 +186,11 @@
 
     <ListView
         android:id="@+id/lvBurguer"
-        style="@style/Widget.AppCompat.Light.ListView.DropDown"
+        style="@android:style/Widget.DeviceDefault.Light.ListView"
         android:layout_width="279dp"
         android:layout_height="217dp"
         android:layout_marginTop="5dp"
+        android:choiceMode="singleChoice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView8" />

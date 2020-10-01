@@ -8,12 +8,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.BurguerControl.adaptador.IngredienteAdaptador;
 import com.example.BurguerControl.objetos.Bebida;
+import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.Ingrediente;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +37,7 @@ public class ingredientes extends AppCompatActivity {
     ListView listIngredientes;
     private ArrayList<Ingrediente> listaIngrediente = new ArrayList<Ingrediente>();
     private ArrayAdapter<Ingrediente> arrayAdapterIngrediente;
+    Ingrediente ingredienteSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,22 @@ public class ingredientes extends AppCompatActivity {
 
         inicializarFirebase();
         eventoDataBase();
+
+        listIngredientes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ingredienteSelecionado = (Ingrediente)parent.getItemAtPosition(position);
+                etDescricaoIngrediente.setText(ingredienteSelecionado.getDescricaoIngrediente());
+                etValorIngrediente.setText(String.valueOf(ingredienteSelecionado.getValorIngrediente()));
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        inicializarFirebase();
+        eventoDataBase();
+        super.onResume();
     }
 
     private void eventoDataBase() {
@@ -56,7 +76,8 @@ public class ingredientes extends AppCompatActivity {
                     Ingrediente ingrediente = objSnapshot.getValue(Ingrediente.class);
                     listaIngrediente.add(ingrediente);
                 }
-                arrayAdapterIngrediente = new ArrayAdapter<Ingrediente>(ingredientes.this,android.R.layout.simple_list_item_1,listaIngrediente);
+                arrayAdapterIngrediente = new ArrayAdapter<Ingrediente>(ingredientes.this,android.R.layout.simple_list_item_single_choice,listaIngrediente);
+                IngredienteAdaptador ingredienteAdaptador = new IngredienteAdaptador(listaIngrediente,ingredientes.this);
                 listIngredientes.setAdapter(arrayAdapterIngrediente);
             }
             @Override
@@ -109,8 +130,8 @@ public class ingredientes extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Ingrediente ingrediente = new Ingrediente();
                 ingrediente.setIdIngrediente(UUID.randomUUID().toString());
-                ingrediente.setDescricaoIngrediente(etDescricaoIngrediente.getText().toString());
-                ingrediente.setValorIngrediente(Float.valueOf(etValorIngrediente.getText().toString()));
+                ingrediente.setDescricaoIngrediente(etDescricaoIngrediente.getText().toString().trim());
+                ingrediente.setValorIngrediente(Float.valueOf(etValorIngrediente.getText().toString().trim()));
 
                 databaseReference.child("Ingrediente").child(ingrediente.getIdIngrediente()).setValue(ingrediente);
                 limparcampos();
@@ -125,6 +146,57 @@ public class ingredientes extends AppCompatActivity {
         });
         AlertDialog alert = msg.create();
         alert.show();
+    }
+
+    public void editarIngrediente(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Editando ingrediente");
+        msg.setMessage("Deseja realmente editar esse ingrediente?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Burguer b = new Burguer();
+                Ingrediente ingrediente = new Ingrediente();
+                ingrediente.setIdIngrediente(ingredienteSelecionado.getIdIngrediente());
+                ingrediente.setDescricaoIngrediente(etDescricaoIngrediente.getText().toString().trim());
+                ingrediente.setValorIngrediente(Float.valueOf(etValorIngrediente.getText().toString().trim()));
+                databaseReference.child("Ingrediente").child(ingrediente.getIdIngrediente()).setValue(ingrediente);
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(ingredientes.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
+    }
+
+    public void excluirIngrediente(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Excluindo ingrediente");
+        msg.setMessage("Deseja realmente excluir esse ingrediente?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Ingrediente ingrediente = new Ingrediente();
+                ingrediente.setIdIngrediente(ingredienteSelecionado.getIdIngrediente());
+                databaseReference.child("Ingrediente").child(ingrediente.getIdIngrediente()).removeValue();
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(ingredientes.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
     }
 
     private void limparcampos() {

@@ -33,7 +33,7 @@ import java.util.UUID;
 public class HamburguerActivity extends AppCompatActivity{
     FirebaseAuth autentica = FirebaseAuth.getInstance();
     ListView listBurguer;
-    private ArrayList<Burguer> listaBurguer = new ArrayList<Burguer>();
+    private List<Burguer> listaBurguer = new ArrayList<Burguer>();
     private ArrayAdapter<Burguer> arrayAdapterBurger;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -50,32 +50,33 @@ public class HamburguerActivity extends AppCompatActivity{
         etValorBurguer = findViewById(R.id.edtValorProduto);
 
         inicializarFirebase();
-        eventoDataBaseBebida();
+        eventoDataBaseBurguer();
+
         listBurguer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 burguerSelecionado = (Burguer)parent.getItemAtPosition(position);
                 etDescricaoBurguer.setText(burguerSelecionado.getDescricaoBurguer());
-                etQuantBurguer.setText(burguerSelecionado.getEstoqueBurguer());
-                etValorBurguer.setText(burguerSelecionado.getValorBurguer().toString());
+                etQuantBurguer.setText(String.valueOf(burguerSelecionado.getEstoqueBurguer()));
+                etValorBurguer.setText(String.valueOf(burguerSelecionado.getValorBurguer()));
             }
         });
     }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(HamburguerActivity.this);
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
     protected void onResume() {
-        eventoDataBaseBebida();
+        eventoDataBaseBurguer();
+        inicializarFirebase();
         super.onResume();
     }
 
-    private void eventoDataBaseBebida() {
+    private void eventoDataBaseBurguer() {
         databaseReference.child("Burguer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,9 +85,9 @@ public class HamburguerActivity extends AppCompatActivity{
                     Burguer burguer = objSnapshot.getValue(Burguer.class);
                     listaBurguer.add(burguer);
                 }
-                arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_1,listaBurguer);
+                arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_single_choice,listaBurguer);
                 HamburguerAdaptador hamburguerAdaptador = new HamburguerAdaptador(listaBurguer,HamburguerActivity.this);
-                listBurguer.setAdapter(hamburguerAdaptador);
+                listBurguer.setAdapter(arrayAdapterBurger);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -182,5 +183,31 @@ public class HamburguerActivity extends AppCompatActivity{
                 Toast.makeText(HamburguerActivity.this,"Ação cancelada",Toast.LENGTH_LONG).show();
             }
         });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
+    }
+
+    public void excluirBurguer(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Excluindo hambúrguer");
+        msg.setMessage("Deseja realmente excluir esse hambúrguer?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Burguer b = new Burguer();
+                b.setIdBurguer(burguerSelecionado.getIdBurguer());
+                databaseReference.child("Burguer").child(b.getIdBurguer()).removeValue();
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(HamburguerActivity.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
     }
 }

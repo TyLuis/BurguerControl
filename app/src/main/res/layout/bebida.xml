@@ -115,6 +115,7 @@
         android:layout_marginEnd="70dp"
         android:layout_marginRight="70dp"
         android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:onClick="editarBebida"
         android:text="Editar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvBebida" />
@@ -126,6 +127,7 @@
         android:layout_marginTop="5dp"
         android:background="#EA2B2B"
         android:drawableLeft="@drawable/minus"
+        android:onClick="excluirBebida"
         android:text="Excluir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

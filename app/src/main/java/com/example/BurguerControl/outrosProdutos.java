@@ -8,12 +8,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.BurguerControl.adaptador.OutrosProdutosAdaptador;
 import com.example.BurguerControl.objetos.Bebida;
+import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.OutroProduto;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +37,7 @@ public class outrosProdutos extends AppCompatActivity {
     ListView listOutros;
     private ArrayList<OutroProduto> listaOutros = new ArrayList<OutroProduto>();
     private ArrayAdapter<OutroProduto> arrayAdapterOutros;
+    OutroProduto outroProdutoSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,22 @@ public class outrosProdutos extends AppCompatActivity {
 
         inicializarFirebase();
         eventoDataBase();
+
+        listOutros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                outroProdutoSelecionado = (OutroProduto)parent.getItemAtPosition(position);
+                etDescricaoOutro.setText(outroProdutoSelecionado.getDescricaoOutro());
+                etQuantidadeOutro.setText(String.valueOf(outroProdutoSelecionado.getQuantidadeOutro()));
+                etValorOutro.setText(String.valueOf(outroProdutoSelecionado.getValorOutro()));
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        eventoDataBase();
+        super.onResume();
     }
 
     private void eventoDataBase() {
@@ -58,7 +78,8 @@ public class outrosProdutos extends AppCompatActivity {
                     OutroProduto outreProducts = objSnapshot.getValue(OutroProduto.class);
                     listaOutros.add(outreProducts);
                 }
-                arrayAdapterOutros = new ArrayAdapter<OutroProduto>(outrosProdutos.this,android.R.layout.simple_list_item_1,listaOutros);
+                OutrosProdutosAdaptador outrosProdutosAdaptador = new OutrosProdutosAdaptador(listaOutros,outrosProdutos.this);
+                arrayAdapterOutros = new ArrayAdapter<OutroProduto>(outrosProdutos.this,android.R.layout.simple_list_item_single_choice,listaOutros);
                 listOutros.setAdapter(arrayAdapterOutros);
             }
             @Override
@@ -71,7 +92,6 @@ public class outrosProdutos extends AppCompatActivity {
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(outrosProdutos.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
-
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -128,6 +148,57 @@ public class outrosProdutos extends AppCompatActivity {
         });
         AlertDialog alert = msg.create();
         alert.show();
+    }
+
+    public void editarOutros(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Editando outro produto");
+        msg.setMessage("Deseja realmente editar esse outro produto?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                OutroProduto outroProduto =  new OutroProduto();
+                outroProduto.setIdOutroProduto(outroProdutoSelecionado.getIdOutroProduto());
+                outroProduto.setDescricaoOutro(etDescricaoOutro.getText().toString().trim());
+                outroProduto.setQuantidadeOutro(Integer.valueOf(etQuantidadeOutro.getText().toString().trim()));
+                outroProduto.setValorOutro(Float.valueOf(etValorOutro.getText().toString().trim()));
+                databaseReference.child("OutroProduto").child(outroProduto.getIdOutroProduto()).setValue(outroProduto);
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(outrosProdutos.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
+    }
+
+    public void excluirOutro(View view){
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Excluindo outro produto");
+        msg.setMessage("Deseja realmente excluir esse outro produto?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                OutroProduto outroProdutos = new OutroProduto();
+                outroProdutos.setIdOutroProduto(outroProdutoSelecionado.getIdOutroProduto());
+                databaseReference.child("OutroProduto").child(outroProdutos.getIdOutroProduto()).removeValue();
+                limparcampos();
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(outrosProdutos.this,"Ação cancelada",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
     }
 
     private void limparcampos() {
