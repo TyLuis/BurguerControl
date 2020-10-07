@@ -67,6 +67,7 @@ public class Pedido extends AppCompatActivity {
                     Burguer burguer = areaSnapshot.getValue(Burguer.class);
                     listasBurguer.add(burguer);
                 }
+                arrayAdapterBurguer = new ArrayAdapter<Burguer>(Pedido.this, android.R.layout.simple_spinner_item, listasBurguer);
                 arrayAdapterBurguer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spnBurguer.setAdapter(arrayAdapterBurguer);
             }
