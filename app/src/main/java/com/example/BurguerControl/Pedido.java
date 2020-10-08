@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.BurguerControl.objetos.Bebida;
 import com.example.BurguerControl.objetos.Burguer;
+import com.example.BurguerControl.objetos.Ingrediente;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +35,11 @@ public class Pedido extends AppCompatActivity {
     private EditText quantBurguer, quantBebida, infoPedido;
     private Button addBurguer, addIngrediente, removeIngrediente, addBebida;
     private ArrayList<Burguer> listasBurguer = new ArrayList<Burguer>();
+    private ArrayList<Bebida> listasBebida = new ArrayList<Bebida>();
+    private ArrayList<Ingrediente> listasIngrediente = new ArrayList<Ingrediente>();
     private ArrayAdapter<Burguer> arrayAdapterBurguer;
+    private ArrayAdapter<Bebida> arrayAdapterBebida;
+    private ArrayAdapter<Ingrediente> arrayAdapterIngrediente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,21 +60,79 @@ public class Pedido extends AppCompatActivity {
 
 
         inicializarFirebase();
-        popularSpinner();
+        popularSpinnerBurguer();
+        popularSpinnerBebida();
+        popularSpinnerIngrediente();
     }
 
-    private void popularSpinner() {
+    @Override
+    protected void onResume() {
+        inicializarFirebase();
+        popularSpinnerBurguer();
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        inicializarFirebase();
+        popularSpinnerBurguer();
+        super.onStart();
+    }
+
+    private void popularSpinnerIngrediente() {
+        databaseReference.child("Ingrediente").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listasIngrediente.clear();
+                for(DataSnapshot objSnapshot: dataSnapshot.getChildren()){
+                    Ingrediente ingrediente = objSnapshot.getValue(Ingrediente.class);
+                    listasIngrediente.add(ingrediente);
+                }
+                arrayAdapterIngrediente = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasIngrediente);
+                arrayAdapterIngrediente.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                spnAddIngrediente.setAdapter(arrayAdapterIngrediente);
+                spnRemoveIngrediente.setAdapter(arrayAdapterIngrediente);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void popularSpinnerBebida() {
+        databaseReference.child("Bebida").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listasBebida.clear();
+                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    Bebida bebida = objSnapshot.getValue(Bebida.class);
+                    listasBebida.add(bebida);
+                }
+                arrayAdapterBebida = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasBebida);
+                arrayAdapterBebida.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                spnBebida.setAdapter(arrayAdapterBebida);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void popularSpinnerBurguer() {
         databaseReference.child("Burguer").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listasBurguer.clear();
                 for(DataSnapshot areaSnapshot:dataSnapshot.getChildren()){
-                    String nomeBurguer = areaSnapshot.getValue(String.class);
                     Burguer burguer = areaSnapshot.getValue(Burguer.class);
                     listasBurguer.add(burguer);
                 }
-                arrayAdapterBurguer = new ArrayAdapter<Burguer>(Pedido.this, android.R.layout.simple_spinner_item, listasBurguer);
-                arrayAdapterBurguer.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                arrayAdapterBurguer = new ArrayAdapter<Burguer>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasBurguer);
+                arrayAdapterBurguer.setDropDownViewResource(android.R.layout.simple_spinner_item);
                 spnBurguer.setAdapter(arrayAdapterBurguer);
             }
 
@@ -81,8 +145,8 @@ public class Pedido extends AppCompatActivity {
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(Pedido.this);
-        FirebaseDatabase firebaseDatabase;
-        DatabaseReference databaseReference;
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
 
