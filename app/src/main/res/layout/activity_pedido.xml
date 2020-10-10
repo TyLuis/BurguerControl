@@ -35,10 +35,10 @@
 
     <Spinner
         android:id="@+id/cbMesa"
-        android:layout_width="57dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="232dp"
-        android:layout_marginRight="232dp"
+        android:layout_width="88dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginRight="200dp"
         android:layout_marginBottom="552dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -99,6 +99,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
         android:drawableTop="@drawable/salvar"
+        android:onClick="salvarPedido"
         android:text="Salvar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTotal" />
@@ -182,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/add"
+                android:onClick="addBurguerPedido"
                 android:text="Adicionar produto ao pedido"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -196,6 +198,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/add"
+                android:onClick="addIngredientePedido"
                 android:text="Adicionar ingrediente"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -211,6 +214,7 @@
                 android:layout_height="39dp"
                 android:background="#FF5722"
                 android:drawableLeft="@drawable/minus"
+                android:onClick="removeIngredientePedido"
                 android:text="Remover ingrediente"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -233,6 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/add"
+                android:onClick="addBebidaSelecionado"
                 android:text="Adicionar bebida ao pedido"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -257,26 +262,18 @@
         app:layout_constraintGuide_begin="363dp" />
 
     <ImageButton
-        android:id="@+id/btVoltar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="4dp"
-        android:onClick="voltar"
-        app:layout_constraintStart_toEndOf="@+id/imgLogo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
-
-    <ImageButton
         android:id="@+id/btSair"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
         android:onClick="sairSistema"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.169"
-        app:layout_constraintStart_toEndOf="@+id/btVoltar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete" />
 
