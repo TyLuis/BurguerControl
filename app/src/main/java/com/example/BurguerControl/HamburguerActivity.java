@@ -4,11 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.BurguerControl.adaptador.HamburguerAdaptador;
 import com.example.BurguerControl.objetos.Burguer;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -86,7 +83,6 @@ public class HamburguerActivity extends AppCompatActivity{
                     listaBurguer.add(burguer);
                 }
                 arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_single_choice,listaBurguer);
-                HamburguerAdaptador hamburguerAdaptador = new HamburguerAdaptador(listaBurguer,HamburguerActivity.this);
                 listBurguer.setAdapter(arrayAdapterBurger);
             }
             @Override

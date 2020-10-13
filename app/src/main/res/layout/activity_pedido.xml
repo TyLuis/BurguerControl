@@ -112,6 +112,7 @@
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
         android:drawableTop="@drawable/cancelar"
+        android:onClick="voltar"
         android:text="Cancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTotalPedido" />
@@ -239,6 +240,29 @@
                 android:drawableLeft="@drawable/add"
                 android:onClick="addBebidaSelecionado"
                 android:text="Adicionar bebida ao pedido"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+            <Spinner
+                android:id="@+id/spnOutros"
+                android:layout_width="match_parent"
+                android:layout_height="39dp" />
+
+            <EditText
+                android:id="@+id/edtQuantOutros"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:hint="Quantidade"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btnAddOutros"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/add"
+                android:onClick="addOutroProduto"
+                android:text="Adicionar outro produto"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
             <EditText

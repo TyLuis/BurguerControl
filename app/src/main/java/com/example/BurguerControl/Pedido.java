@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.BurguerControl.objetos.Bebida;
 import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.Ingrediente;
+import com.example.BurguerControl.objetos.OutroProduto;
 import com.example.BurguerControl.objetos.Pedidos;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,20 +35,23 @@ public class Pedido extends AppCompatActivity {
     FirebaseAuth autentica = FirebaseAuth.getInstance();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    private Spinner spnBurguer, spnAddIngrediente, spnRemoveIngrediente, spnBebida, spnMesa;
-    private EditText quantBurguer, quantBebida, infoPedido, valorTotalPedido;
+    private Spinner spnBurguer, spnAddIngrediente, spnRemoveIngrediente, spnBebida, spnMesa, spnOutro;
+    private EditText quantBurguer, quantBebida, infoPedido, valorTotalPedido, quantOutro;
     private Button addBurguer, addIngrediente, removeIngrediente, addBebida;
     private ArrayList<Burguer> listasBurguer = new ArrayList<Burguer>();
     private ArrayList<Bebida> listasBebida = new ArrayList<Bebida>();
     private ArrayList<Ingrediente> listasIngrediente = new ArrayList<Ingrediente>();
+    private ArrayList<OutroProduto> listasOutros = new ArrayList<OutroProduto>();
     private ArrayAdapter<Burguer> arrayAdapterBurguer;
     private ArrayAdapter<Bebida> arrayAdapterBebida;
     private ArrayAdapter<Ingrediente> arrayAdapterIngrediente;
     private ArrayAdapter<CharSequence> mesaAdapter;
+    private ArrayAdapter<OutroProduto> arrayAdapterOutro;
     private Burguer burguerSelecionado;
     private Bebida bebidaSelecionado;
+    private OutroProduto outroSelecionado;
     private Ingrediente ingreAddSelecionado, ingreRemoveSelecionado;
-    private String spinnerBurguerText, infoFinal, spinnerIngreAddText, spinnerIngreRemoveText, spinnerBebidaText, mesa;
+    private String spinnerBurguerText, infoFinal, spinnerIngreAddText, spinnerIngreRemoveText, spinnerBebidaText, mesa, spinnerOutroText;
     private Float valorTotal, ajuda;
     private Integer mesaNumero;
 
@@ -68,6 +72,8 @@ public class Pedido extends AppCompatActivity {
         addBebida = (Button)findViewById(R.id.btAddBebida);
         spnMesa = (Spinner)findViewById(R.id.cbMesa);
         valorTotalPedido = (EditText)findViewById(R.id.edtTotalPedido);
+        spnOutro = (Spinner)findViewById(R.id.spnOutros);
+        quantOutro = (EditText)findViewById(R.id.edtQuantOutros);
         valorTotal = Float.valueOf(0);
         ajuda = Float.valueOf(0);
         infoFinal ="";
@@ -76,6 +82,7 @@ public class Pedido extends AppCompatActivity {
         popularSpinnerBurguer();
         popularSpinnerBebida();
         popularSpinnerIngrediente();
+        popularSpinnerOutro();
 
         spnBurguer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -129,6 +136,19 @@ public class Pedido extends AppCompatActivity {
             }
         });
 
+        spnOutro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                outroSelecionado = (OutroProduto)parent.getItemAtPosition(position);
+                spinnerOutroText = outroSelecionado.getDescricaoOutro();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         mesaAdapter = ArrayAdapter.createFromResource(this,R.array.mesa_array,android.R.layout.simple_spinner_item);
         mesaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnMesa.setAdapter(mesaAdapter);
@@ -151,6 +171,9 @@ public class Pedido extends AppCompatActivity {
     protected void onResume() {
         inicializarFirebase();
         popularSpinnerBurguer();
+        popularSpinnerBebida();
+        popularSpinnerIngrediente();
+        popularSpinnerOutro();
         super.onResume();
     }
 
@@ -158,7 +181,31 @@ public class Pedido extends AppCompatActivity {
     protected void onStart() {
         inicializarFirebase();
         popularSpinnerBurguer();
+        popularSpinnerBebida();
+        popularSpinnerIngrediente();
+        popularSpinnerOutro();
         super.onStart();
+    }
+
+    private void popularSpinnerOutro() {
+        databaseReference.child("OutroProduto").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listasOutros.clear();
+                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    OutroProduto outroProduto = objSnapshot.getValue(OutroProduto.class);
+                    listasOutros.add(outroProduto);
+                }
+                arrayAdapterOutro = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item,listasOutros);
+                arrayAdapterOutro.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                spnOutro.setAdapter(arrayAdapterOutro);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void addBurguerPedido(View view){
@@ -208,6 +255,9 @@ public class Pedido extends AppCompatActivity {
 
                 infoPedido.setText("");
                 valorTotalPedido.setText("");
+                quantBurguer.setText("");
+                quantBebida.setText("");
+                quantOutro.setText("");
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -219,6 +269,14 @@ public class Pedido extends AppCompatActivity {
         });
         AlertDialog alert = msg.create();
         alert.show();
+    }
+
+     public void addOutroProduto(View view){
+        ajuda = outroSelecionado.getValorOutro() * Float.parseFloat(quantOutro.getText().toString());
+        valorTotal+=ajuda;
+        infoFinal+=quantOutro.getText().toString()+"x "+spinnerOutroText+"\n";
+        infoPedido.setText(infoFinal);
+        valorTotalPedido.setText(String.valueOf(valorTotal));
     }
 
     private void popularSpinnerIngrediente() {
@@ -314,8 +372,25 @@ public class Pedido extends AppCompatActivity {
     }
 
     public void voltar(View view){
-        finish();
-        Intent intent = new Intent(this, principalMenu.class);
-        startActivity(intent);
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("Saindo do pedido");
+        msg.setMessage("Deseja realmente sair do pedido?");
+        msg.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+                Intent intent = new Intent(Pedido.this, principalMenu.class);
+                startActivity(intent);
+            }
+        });
+        msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Toast.makeText(Pedido.this, "Ação cancelada", Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = msg.create();
+        alertDialog.show();
     }
 }

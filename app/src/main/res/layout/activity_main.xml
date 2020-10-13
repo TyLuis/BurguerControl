@@ -61,6 +61,7 @@
         android:layout_width="102dp"
         android:layout_height="43dp"
         android:drawableLeft="@android:drawable/ic_menu_send"
+        android:enabled="false"
         android:onClick="logarUsuario"
         android:text="Login"
         app:layout_constraintBottom_toTopOf="@+id/txtOu"

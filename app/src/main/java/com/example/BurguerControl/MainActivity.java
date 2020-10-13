@@ -22,12 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
     EditText etEmail, etSenha;
     private FirebaseAuth autentica;
+    private Button btnLogar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         autentica = FirebaseAuth.getInstance();
+
+        btnLogar = (Button)findViewById(R.id.btLogar);
 
     }
 

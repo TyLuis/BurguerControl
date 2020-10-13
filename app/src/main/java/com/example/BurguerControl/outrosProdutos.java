@@ -14,9 +14,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.BurguerControl.adaptador.OutrosProdutosAdaptador;
-import com.example.BurguerControl.objetos.Bebida;
-import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.OutroProduto;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,7 +75,6 @@ public class outrosProdutos extends AppCompatActivity {
                     OutroProduto outreProducts = objSnapshot.getValue(OutroProduto.class);
                     listaOutros.add(outreProducts);
                 }
-                OutrosProdutosAdaptador outrosProdutosAdaptador = new OutrosProdutosAdaptador(listaOutros,outrosProdutos.this);
                 arrayAdapterOutros = new ArrayAdapter<OutroProduto>(outrosProdutos.this,android.R.layout.simple_list_item_single_choice,listaOutros);
                 listOutros.setAdapter(arrayAdapterOutros);
             }

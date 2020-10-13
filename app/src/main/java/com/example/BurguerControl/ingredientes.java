@@ -14,8 +14,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.BurguerControl.adaptador.IngredienteAdaptador;
-import com.example.BurguerControl.objetos.Bebida;
 import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.Ingrediente;
 import com.google.firebase.FirebaseApp;
@@ -77,7 +75,6 @@ public class ingredientes extends AppCompatActivity {
                     listaIngrediente.add(ingrediente);
                 }
                 arrayAdapterIngrediente = new ArrayAdapter<Ingrediente>(ingredientes.this,android.R.layout.simple_list_item_single_choice,listaIngrediente);
-                IngredienteAdaptador ingredienteAdaptador = new IngredienteAdaptador(listaIngrediente,ingredientes.this);
                 listIngredientes.setAdapter(arrayAdapterIngrediente);
             }
             @Override
