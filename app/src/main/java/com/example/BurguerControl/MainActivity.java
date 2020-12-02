@@ -2,6 +2,8 @@ package com.example.BurguerControl;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogar;
     private GoogleSignInClient googleSignInClient;
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        etSenha.setText("");
+        etEmail.setText("");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +38,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         autentica = FirebaseAuth.getInstance();
 
-        btnLogar = (Button)findViewById(R.id.btLogar);
         etEmail=(EditText)findViewById(R.id.edtLogin);
         etSenha = (EditText)findViewById(R.id.edtSenha);
+        btnLogar = (Button)findViewById(R.id.btLogar);
+
+        etSenha.addTextChangedListener(loginTextWatcher);
+        etEmail.addTextChangedListener(loginTextWatcher);
     }
+
+    private TextWatcher loginTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String email = etEmail.getText().toString().trim();
+            String senha = etSenha.getText().toString().trim();
+
+            btnLogar.setEnabled((!senha.isEmpty()) && (!email.isEmpty()));
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     public void criarContaChamada(View view){
         Intent intent = new Intent(this, criarConta.class);

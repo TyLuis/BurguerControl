@@ -92,47 +92,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="663dp" />
 
-    <Button
-        android:id="@+id/btAddBebida"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="5dp"
-        android:drawableLeft="@drawable/add"
-        android:onClick="addBebida"
-        android:text="Salvar"
-        app:layout_constraintEnd_toStartOf="@+id/btEditarBebida"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvBebida" />
-
-    <Button
-        android:id="@+id/btEditarBebida"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:onClick="editarBebida"
-        android:text="Editar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvBebida" />
-
-    <Button
-        android:id="@+id/btExcluirBebida"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="5dp"
-        android:background="#EA2B2B"
-        android:drawableLeft="@drawable/minus"
-        android:onClick="excluirBebida"
-        android:text="Excluir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddBebida" />
-
     <ImageView
         android:id="@+id/imgFundo"
         android:layout_width="wrap_content"
@@ -195,4 +154,48 @@
         app:layout_constraintStart_toStartOf="@+id/imgFundo"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3"
         tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btAddBebida"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/add"
+        android:enabled="false"
+        android:onClick="addBebida"
+        android:text="Salvar"
+        app:layout_constraintEnd_toStartOf="@+id/btEditarBebida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvBebida" />
+
+    <Button
+        android:id="@+id/btEditarBebida"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:enabled="false"
+        android:onClick="editarBebida"
+        android:text="Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvBebida" />
+
+    <Button
+        android:id="@+id/btExcluirBebida"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:background="#EA2B2B"
+        android:drawableLeft="@drawable/minus"
+        android:enabled="false"
+        android:onClick="excluirBebida"
+        android:text="Excluir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAddBebida" />
 </androidx.constraintlayout.widget.ConstraintLayout>

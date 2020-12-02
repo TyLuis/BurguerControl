@@ -165,6 +165,7 @@
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
         android:drawableLeft="@drawable/minus"
+        android:enabled="false"
         android:onClick="finalizarPedido"
         android:text="Finalizar pedido"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"

@@ -12,4 +12,9 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+    <string-array name="funcao_array">
+        <item>Garçom</item>
+        <item>Cozinheiro</item>
+        <item>Gerente</item>
+    </string-array>
 </resources>

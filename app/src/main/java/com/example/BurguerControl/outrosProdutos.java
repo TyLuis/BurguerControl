@@ -1,18 +1,21 @@
 package com.example.BurguerControl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.BurguerControl.objetos.OutroProduto;
 import com.google.firebase.FirebaseApp;
@@ -35,6 +38,7 @@ public class outrosProdutos extends AppCompatActivity {
     private ArrayList<OutroProduto> listaOutros = new ArrayList<OutroProduto>();
     private ArrayAdapter<OutroProduto> arrayAdapterOutros;
     OutroProduto outroProdutoSelecionado;
+    private Button btnSalvar, btnEditar, btnExcluir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,9 @@ public class outrosProdutos extends AppCompatActivity {
         etQuantidadeOutro = (EditText)findViewById(R.id.edtQuantidadeOutros);
         etValorOutro = (EditText)findViewById(R.id.edtValorOutros);
         listOutros = (ListView)findViewById(R.id.lvOutrosProdutos);
+        btnSalvar = (Button)findViewById(R.id.btAddOutros);
+        btnEditar = (Button)findViewById(R.id.btEditarOutros);
+        btnExcluir = (Button)findViewById(R.id.btExcluirOutros);
 
         inicializarFirebase();
         eventoDataBase();
@@ -59,6 +66,29 @@ public class outrosProdutos extends AppCompatActivity {
             }
         });
     }
+
+    private TextWatcher outrosTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String descri = etDescricaoOutro.getText().toString().trim();
+            String quant = etQuantidadeOutro.getText().toString().trim();
+            String valor = etValorOutro.getText().toString().trim();
+
+            btnSalvar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+            btnEditar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+            btnExcluir.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     @Override
     protected void onResume() {

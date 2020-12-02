@@ -1,20 +1,22 @@
 package com.example.BurguerControl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.BurguerControl.objetos.Burguer;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.BurguerControl.objetos.Pedidos;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +37,7 @@ public class cozinha extends AppCompatActivity {
     private ArrayList<Pedidos> listasPedido = new ArrayList<Pedidos>();
     private ArrayAdapter<Pedidos> arrayAdapterPedido;
     private Pedidos pedidoSelecionado;
+    private Button btnFinaliza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class cozinha extends AppCompatActivity {
         edtMesa = (EditText)findViewById(R.id.edtMesa);
         edtInfo = (EditText)findViewById(R.id.edtInfo);
         edtValor = (EditText)findViewById(R.id.edtValorPedido);
+        btnFinaliza = (Button)findViewById(R.id.btnFinalizarPedido);
 
         inicializarFirebase();
         popularListViewPedido();
@@ -58,7 +62,28 @@ public class cozinha extends AppCompatActivity {
                 edtValor.setText(String.valueOf(pedidoSelecionado.getValorPedido()));
             }
         });
+
+        edtInfo.addTextChangedListener(finalizaTextWatcher);
     }
+
+    private TextWatcher finalizaTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String info = edtInfo.getText().toString().trim();
+
+            btnFinaliza.setEnabled(!info.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(cozinha.this);

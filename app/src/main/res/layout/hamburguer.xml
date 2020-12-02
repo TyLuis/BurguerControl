@@ -88,50 +88,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="674dp" />
 
-    <Button
-        android:id="@+id/btAddBurguer"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="5dp"
-        android:drawableLeft="@drawable/add"
-        android:onClick="salvarBurguer"
-        android:text="Salvar"
-        app:layout_constraintEnd_toStartOf="@+id/btEdtBurguer"
-        app:layout_constraintHorizontal_bias="0.681"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvBurguer" />
-
-    <Button
-        android:id="@+id/btEdtBurguer"
-        android:layout_width="118dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
-        android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:onClick="editaBurguer"
-        android:text="Editar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvBurguer" />
-
-    <Button
-        android:id="@+id/btExcluirBurguer"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="118dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="5dp"
-        android:background="#EA2B2B"
-        android:drawableLeft="@drawable/minus"
-        android:onClick="excluirBurguer"
-        android:text="Excluir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddBurguer"
-        app:layout_constraintVertical_bias="0.109" />
-
     <ImageView
         android:id="@+id/imgFundo"
         android:layout_width="wrap_content"
@@ -194,4 +150,51 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView8" />
+
+    <Button
+        android:id="@+id/btExcluirBurguer"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:background="#EA2B2B"
+        android:drawableLeft="@drawable/minus"
+        android:enabled="false"
+        android:onClick="excluirBurguer"
+        android:text="Excluir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAddBurguer"
+        app:layout_constraintVertical_bias="0.109" />
+
+    <Button
+        android:id="@+id/btAddBurguer"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/add"
+        android:enabled="false"
+        android:onClick="salvarBurguer"
+        android:text="Salvar"
+        app:layout_constraintEnd_toStartOf="@+id/btEdtBurguer"
+        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvBurguer" />
+
+    <Button
+        android:id="@+id/btEdtBurguer"
+        android:layout_width="118dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:enabled="false"
+        android:onClick="editaBurguer"
+        android:text="Editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvBurguer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

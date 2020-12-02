@@ -106,6 +106,19 @@
                 android:ems="10"
                 android:hint="Senha"
                 android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/edtConfirmaSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Confirme sua senha"
+                android:inputType="textPassword" />
+
+            <Spinner
+                android:id="@+id/spnFuncao"
+                android:layout_width="match_parent"
+                android:layout_height="39dp" />
         </LinearLayout>
     </ScrollView>
 
@@ -118,6 +131,7 @@
         android:layout_marginLeft="76dp"
         android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/salvar"
+        android:enabled="false"
         android:onClick="criandoConta"
         android:text="Salvar"
         app:layout_constraintEnd_toStartOf="@+id/btCancelarConta"

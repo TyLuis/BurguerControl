@@ -37,9 +37,9 @@
         android:id="@+id/cbMesa"
         android:layout_width="88dp"
         android:layout_height="37dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
-        android:layout_marginBottom="552dp"
+        android:layout_marginEnd="196dp"
+        android:layout_marginRight="196dp"
+        android:layout_marginBottom="540dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -271,6 +271,7 @@
                 android:layout_height="150dp"
                 android:clickable="false"
                 android:ems="10"
+                android:enabled="false"
                 android:gravity="start|top"
                 android:hint="Informações do pedido"
                 android:inputType="textMultiLine" />

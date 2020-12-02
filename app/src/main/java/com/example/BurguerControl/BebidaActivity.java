@@ -1,18 +1,21 @@
 package com.example.BurguerControl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.BurguerControl.objetos.Bebida;
 import com.google.firebase.FirebaseApp;
@@ -35,6 +38,7 @@ public class BebidaActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     EditText etDescricaoBebida, etQuantidadeBebida, etValorBebida;
     Bebida bebidaSelecionada;
+    private Button btnSalvar, btnEditar, btnExcluir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,9 @@ public class BebidaActivity extends AppCompatActivity {
         etQuantidadeBebida = (EditText)findViewById(R.id.edtQuantidadeBebida);
         etValorBebida = (EditText)findViewById(R.id.edtValorBebida);
         listBebida = (ListView)findViewById(R.id.lvBebida);
+        btnSalvar = (Button)findViewById(R.id.btAddBebida);
+        btnEditar = (Button)findViewById(R.id.btEditarBebida);
+        btnExcluir = (Button)findViewById(R.id.btExcluirBebida);
 
         inicializarFirebase();
         eventoDataBase();
@@ -58,7 +65,34 @@ public class BebidaActivity extends AppCompatActivity {
                 etValorBebida.setText(String.valueOf(bebidaSelecionada.getValorBebida()));
             }
         });
+
+        etDescricaoBebida.addTextChangedListener(bebidaTextWatcher);
+        etQuantidadeBebida.addTextChangedListener(bebidaTextWatcher);
+        etValorBebida.addTextChangedListener(bebidaTextWatcher);
     }
+
+    private TextWatcher bebidaTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String descri = etDescricaoBebida.getText().toString().trim();
+            String quant = etQuantidadeBebida.getText().toString().trim();
+            String valor = etValorBebida.getText().toString().trim();
+
+            btnSalvar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+            btnExcluir.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+            btnEditar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     @Override
     protected void onResume() {

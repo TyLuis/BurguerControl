@@ -92,48 +92,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="341dp" />
 
-    <Button
-        android:id="@+id/btAddOutros"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="5dp"
-        android:drawableLeft="@drawable/add"
-        android:onClick="addOutros"
-        android:text="salvar"
-        app:layout_constraintEnd_toStartOf="@+id/btEditarOutros"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvOutrosProdutos" />
-
-    <Button
-        android:id="@+id/btEditarOutros"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:onClick="editarOutros"
-        android:text="editar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvOutrosProdutos" />
-
-    <Button
-        android:id="@+id/btExcluirOutros"
-        android:layout_width="119dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="5dp"
-        android:background="#EA2B2B"
-        android:drawableLeft="@drawable/minus"
-        android:onClick="excluirOutro"
-        android:text="excluir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btAddOutros" />
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -195,4 +153,49 @@
                 android:inputType="number|numberDecimal" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btExcluirOutros"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:background="#EA2B2B"
+        android:drawableLeft="@drawable/minus"
+        android:enabled="false"
+        android:onClick="excluirOutro"
+        android:text="excluir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btAddOutros" />
+
+    <Button
+        android:id="@+id/btEditarOutros"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:drawableLeft="@android:drawable/ic_menu_edit"
+        android:enabled="false"
+        android:onClick="editarOutros"
+        android:text="editar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvOutrosProdutos" />
+
+    <Button
+        android:id="@+id/btAddOutros"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="119dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/add"
+        android:enabled="false"
+        android:onClick="addOutros"
+        android:text="salvar"
+        app:layout_constraintEnd_toStartOf="@+id/btEditarOutros"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvOutrosProdutos" />
 </androidx.constraintlayout.widget.ConstraintLayout>

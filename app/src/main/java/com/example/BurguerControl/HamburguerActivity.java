@@ -1,18 +1,21 @@
 package com.example.BurguerControl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.BurguerControl.objetos.Burguer;
 import com.google.firebase.FirebaseApp;
@@ -36,6 +39,7 @@ public class HamburguerActivity extends AppCompatActivity{
     DatabaseReference databaseReference;
     EditText etDescricaoBurguer, etQuantBurguer,etValorBurguer;
     Burguer burguerSelecionado;
+    private Button btnSalvar, btnEditar, btnExcluir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,9 @@ public class HamburguerActivity extends AppCompatActivity{
         etDescricaoBurguer = findViewById(R.id.edtNomeProduto);
         etQuantBurguer = findViewById(R.id.edtQuantidadeProduto);
         etValorBurguer = findViewById(R.id.edtValorProduto);
+        btnSalvar = (Button)findViewById(R.id.btAddBurguer);
+        btnEditar = (Button)findViewById(R.id.btEdtBurguer);
+        btnExcluir = (Button)findViewById(R.id.btExcluirBurguer);
 
         inicializarFirebase();
         eventoDataBaseBurguer();
@@ -52,13 +59,41 @@ public class HamburguerActivity extends AppCompatActivity{
         listBurguer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                btnSalvar.setEnabled(false);
                 burguerSelecionado = (Burguer)parent.getItemAtPosition(position);
                 etDescricaoBurguer.setText(burguerSelecionado.getDescricaoBurguer());
                 etQuantBurguer.setText(String.valueOf(burguerSelecionado.getEstoqueBurguer()));
                 etValorBurguer.setText(String.valueOf(burguerSelecionado.getValorBurguer()));
             }
         });
+
+        etDescricaoBurguer.addTextChangedListener(burguerTextWatcher);
+        etQuantBurguer.addTextChangedListener(burguerTextWatcher);
+        etValorBurguer.addTextChangedListener(burguerTextWatcher);
     }
+
+    private TextWatcher burguerTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String descri = etDescricaoBurguer.getText().toString().trim();
+            String quant = etQuantBurguer.getText().toString().trim();
+            String valor = etValorBurguer.getText().toString().trim();
+
+            btnSalvar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+            btnEditar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+            btnExcluir.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(HamburguerActivity.this);
@@ -181,6 +216,7 @@ public class HamburguerActivity extends AppCompatActivity{
         });
         AlertDialog alertDialog = msg.create();
         alertDialog.show();
+
     }
 
     public void excluirBurguer(View view){

@@ -1,16 +1,15 @@
 package com.example.BurguerControl;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class principalMenu extends AppCompatActivity {
     private FirebaseAuth autentica = FirebaseAuth.getInstance();
@@ -24,6 +23,10 @@ public class principalMenu extends AppCompatActivity {
     public void vaiGerencia(View view){
         Intent intent = new Intent(this,gerencia.class);
         startActivity(intent);
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        Toast.makeText(principalMenu.this,"Você não tem permissão para essa função!",Toast.LENGTH_LONG).show();
+        AlertDialog alert = msg.create();
+        alert.show();
     }
 
     public void vaiCaixa(View view){

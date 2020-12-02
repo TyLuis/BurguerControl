@@ -1,18 +1,21 @@
 package com.example.BurguerControl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.Ingrediente;
@@ -36,6 +39,7 @@ public class ingredientes extends AppCompatActivity {
     private ArrayList<Ingrediente> listaIngrediente = new ArrayList<Ingrediente>();
     private ArrayAdapter<Ingrediente> arrayAdapterIngrediente;
     Ingrediente ingredienteSelecionado;
+    private Button btnSalvar, btnEditar, btnExcluir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,9 @@ public class ingredientes extends AppCompatActivity {
         etDescricaoIngrediente = (EditText)findViewById(R.id.edtNomeIngrediente);
         listIngredientes = (ListView)findViewById(R.id.lvIngredientes);
         etValorIngrediente = (EditText)findViewById(R.id.edtValorIngrediente);
+        btnSalvar = (Button)findViewById(R.id.btAddIngrediente);
+        btnEditar = (Button)findViewById(R.id.btEditarIngrediente);
+        btnExcluir = (Button)findViewById(R.id.btExcluirIngrediente);
 
         inicializarFirebase();
         eventoDataBase();
@@ -56,7 +63,32 @@ public class ingredientes extends AppCompatActivity {
                 etValorIngrediente.setText(String.valueOf(ingredienteSelecionado.getValorIngrediente()));
             }
         });
+
+        etValorIngrediente.addTextChangedListener(ingredienteTextWatcher);
+        etDescricaoIngrediente.addTextChangedListener(ingredienteTextWatcher);
     }
+
+    private TextWatcher ingredienteTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String descri = etDescricaoIngrediente.getText().toString().trim();
+            String valor = etValorIngrediente.getText().toString().trim();
+
+            btnSalvar.setEnabled(!descri.isEmpty() && !valor.isEmpty());
+            btnEditar.setEnabled(!descri.isEmpty() && !valor.isEmpty());
+            btnExcluir.setEnabled(!descri.isEmpty() && !valor.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     @Override
     protected void onResume() {
