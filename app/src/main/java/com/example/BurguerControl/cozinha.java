@@ -17,9 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.BurguerControl.adapter.CozinhaAdapter;
 import com.example.BurguerControl.objetos.Pedidos;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,12 +34,14 @@ public class cozinha extends AppCompatActivity {
     FirebaseAuth autentica = FirebaseAuth.getInstance();
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    FirebaseUser firebaseUser;
     private ListView lstCozinha;
     private EditText edtMesa, edtInfo, edtValor;
     private ArrayList<Pedidos> listasPedido = new ArrayList<Pedidos>();
     private ArrayAdapter<Pedidos> arrayAdapterPedido;
     private Pedidos pedidoSelecionado;
     private Button btnFinaliza;
+    private String usuarioLogado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class cozinha extends AppCompatActivity {
         btnFinaliza = (Button)findViewById(R.id.btnFinalizarPedido);
 
         inicializarFirebase();
+        usuarioLogado = firebaseUser.getDisplayName();
         popularListViewPedido();
 
         lstCozinha.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,6 +65,10 @@ public class cozinha extends AppCompatActivity {
                 edtMesa.setText(String.valueOf(pedidoSelecionado.getMesa()));
                 edtInfo.setText(pedidoSelecionado.getInfoPedido());
                 edtValor.setText(String.valueOf(pedidoSelecionado.getValorPedido()));
+
+                if(usuarioLogado.equals("Gerente")){
+                    btnFinaliza.setEnabled(false);
+                }
             }
         });
 
@@ -89,6 +98,7 @@ public class cozinha extends AppCompatActivity {
         FirebaseApp.initializeApp(cozinha.this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseUser = autentica.getCurrentUser();
     }
 
     private void popularListViewPedido() {
@@ -100,8 +110,9 @@ public class cozinha extends AppCompatActivity {
                     Pedidos pedidos = objSnapshot.getValue(Pedidos.class);
                     listasPedido.add(pedidos);
                 }
-                arrayAdapterPedido = new ArrayAdapter<Pedidos>(cozinha.this,android.R.layout.simple_list_item_single_choice,listasPedido);
-                lstCozinha.setAdapter(arrayAdapterPedido);
+                CozinhaAdapter cozinhaAdapter = new CozinhaAdapter(cozinha.this,listasPedido);
+                /*arrayAdapterPedido = new ArrayAdapter<Pedidos>(cozinha.this,android.R.layout.simple_list_item_single_choice,listasPedido);*/
+                lstCozinha.setAdapter(cozinhaAdapter);
             }
 
             @Override

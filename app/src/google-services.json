@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "609413578185-6l1otutgnqq3mas5iro8980cd40455t6.apps.googleusercontent.com",
+          "client_id": "609413578185-4cc9esh02srrv6r1eg756rr94l2nb9no.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.BurguerControl",
-            "certificate_hash": "0eef22bc97fb148f6b52f36c80ebb14caf796775"
+            "certificate_hash": "27a44b6e1bac1283eac4884c92d0470edb5b2df0"
           }
         },
         {

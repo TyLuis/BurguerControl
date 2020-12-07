@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.BurguerControl.adapter.IngredienteAdapter;
 import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.Ingrediente;
 import com.google.firebase.FirebaseApp;
@@ -61,6 +62,9 @@ public class ingredientes extends AppCompatActivity {
                 ingredienteSelecionado = (Ingrediente)parent.getItemAtPosition(position);
                 etDescricaoIngrediente.setText(ingredienteSelecionado.getDescricaoIngrediente());
                 etValorIngrediente.setText(String.valueOf(ingredienteSelecionado.getValorIngrediente()));
+                btnEditar.setEnabled(true);
+                btnExcluir.setEnabled(true);
+                btnSalvar.setEnabled(false);
             }
         });
 
@@ -80,8 +84,6 @@ public class ingredientes extends AppCompatActivity {
             String valor = etValorIngrediente.getText().toString().trim();
 
             btnSalvar.setEnabled(!descri.isEmpty() && !valor.isEmpty());
-            btnEditar.setEnabled(!descri.isEmpty() && !valor.isEmpty());
-            btnExcluir.setEnabled(!descri.isEmpty() && !valor.isEmpty());
         }
 
         @Override
@@ -106,8 +108,9 @@ public class ingredientes extends AppCompatActivity {
                     Ingrediente ingrediente = objSnapshot.getValue(Ingrediente.class);
                     listaIngrediente.add(ingrediente);
                 }
-                arrayAdapterIngrediente = new ArrayAdapter<Ingrediente>(ingredientes.this,android.R.layout.simple_list_item_single_choice,listaIngrediente);
-                listIngredientes.setAdapter(arrayAdapterIngrediente);
+                IngredienteAdapter ingredienteAdapter = new IngredienteAdapter(ingredientes.this,listaIngrediente);
+                /*arrayAdapterIngrediente = new ArrayAdapter<Ingrediente>(ingredientes.this,android.R.layout.simple_list_item_single_choice,listaIngrediente);*/
+                listIngredientes.setAdapter(ingredienteAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -164,6 +167,7 @@ public class ingredientes extends AppCompatActivity {
 
                 databaseReference.child("Ingrediente").child(ingrediente.getIdIngrediente()).setValue(ingrediente);
                 limparcampos();
+                Toast.makeText(ingredientes.this,"Ingrediente salvo com sucesso",Toast.LENGTH_LONG).show();
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -191,6 +195,7 @@ public class ingredientes extends AppCompatActivity {
                 ingrediente.setValorIngrediente(Float.valueOf(etValorIngrediente.getText().toString().trim()));
                 databaseReference.child("Ingrediente").child(ingrediente.getIdIngrediente()).setValue(ingrediente);
                 limparcampos();
+                Toast.makeText(ingredientes.this,"Ingrediente editado com sucesso",Toast.LENGTH_LONG).show();
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -215,6 +220,7 @@ public class ingredientes extends AppCompatActivity {
                 ingrediente.setIdIngrediente(ingredienteSelecionado.getIdIngrediente());
                 databaseReference.child("Ingrediente").child(ingrediente.getIdIngrediente()).removeValue();
                 limparcampos();
+                Toast.makeText(ingredientes.this,"Ingrediente excluído com sucesso",Toast.LENGTH_LONG).show();
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -230,6 +236,6 @@ public class ingredientes extends AppCompatActivity {
 
     private void limparcampos() {
         etDescricaoIngrediente.setText("");
-        Toast.makeText(ingredientes.this,"Ingrediente salvo com sucesso",Toast.LENGTH_LONG).show();
+        etValorIngrediente.setText("");
     }
 }

@@ -1,12 +1,10 @@
 package com.example.BurguerControl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +13,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.BurguerControl.adapter.BebidaPedidoAdapter;
+import com.example.BurguerControl.adapter.BurguerPedidoAdapter;
+import com.example.BurguerControl.adapter.IngredientePedidoAdapter;
+import com.example.BurguerControl.adapter.OutrosPedidoAdapter;
 import com.example.BurguerControl.objetos.Bebida;
 import com.example.BurguerControl.objetos.Burguer;
 import com.example.BurguerControl.objetos.Ingrediente;
@@ -37,7 +43,7 @@ public class Pedido extends AppCompatActivity {
     DatabaseReference databaseReference;
     private Spinner spnBurguer, spnAddIngrediente, spnRemoveIngrediente, spnBebida, spnMesa, spnOutro;
     private EditText quantBurguer, quantBebida, infoPedido, valorTotalPedido, quantOutro;
-    private Button addBurguer, addIngrediente, removeIngrediente, addBebida;
+    private Button addBurguer, addIngrediente, removeIngrediente, addBebida, salvarPedido, addOutros;
     private ArrayList<Burguer> listasBurguer = new ArrayList<Burguer>();
     private ArrayList<Bebida> listasBebida = new ArrayList<Bebida>();
     private ArrayList<Ingrediente> listasIngrediente = new ArrayList<Ingrediente>();
@@ -53,7 +59,7 @@ public class Pedido extends AppCompatActivity {
     private Ingrediente ingreAddSelecionado, ingreRemoveSelecionado;
     private String spinnerBurguerText, infoFinal, spinnerIngreAddText, spinnerIngreRemoveText, spinnerBebidaText, mesa, spinnerOutroText;
     private Float valorTotal, ajuda;
-    private Integer mesaNumero;
+    private Integer mesaNumero, ajudaBurguer=0, ajudaBebida=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +72,7 @@ public class Pedido extends AppCompatActivity {
         quantBurguer = (EditText)findViewById(R.id.edtProduto);
         quantBebida = (EditText)findViewById(R.id.edtBebida);
         infoPedido = (EditText)findViewById(R.id.edtPedido);
-        addBurguer = (Button)findViewById(R.id.btAddBurguer);
+        addBurguer = (Button)findViewById(R.id.btAddProduto);
         addIngrediente = (Button)findViewById(R.id.btAddAdicao);
         removeIngrediente = (Button)findViewById(R.id.btnRemocao);
         addBebida = (Button)findViewById(R.id.btAddBebida);
@@ -76,7 +82,9 @@ public class Pedido extends AppCompatActivity {
         quantOutro = (EditText)findViewById(R.id.edtQuantOutros);
         valorTotal = Float.valueOf(0);
         ajuda = Float.valueOf(0);
-        infoFinal ="";
+        infoFinal = "";
+        salvarPedido = (Button)findViewById(R.id.btSalvar);
+        addOutros = (Button)findViewById(R.id.btnAddOutros);
 
         inicializarFirebase();
         popularSpinnerBurguer();
@@ -165,7 +173,40 @@ public class Pedido extends AppCompatActivity {
 
             }
         });
+
+        quantBurguer.addTextChangedListener(pedidoTextWatcher);
+        quantOutro.addTextChangedListener(pedidoTextWatcher);
+        quantBebida.addTextChangedListener(pedidoTextWatcher);
+        infoPedido.addTextChangedListener(pedidoTextWatcher);
+        if(ajudaBurguer>0){
+
+        }
     }
+
+    private TextWatcher pedidoTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String quantsBurguer = quantBurguer.getText().toString().trim();
+            String quantsBebida = quantBebida.getText().toString().trim();
+            String quantsOutro = quantOutro.getText().toString().trim();
+            String info = infoPedido.getText().toString().trim();
+
+            addBurguer.setEnabled(!quantsBurguer.isEmpty());
+            addBebida.setEnabled(!quantsBebida.isEmpty());
+            addOutros.setEnabled(!quantsOutro.isEmpty());
+            salvarPedido.setEnabled(!info.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     @Override
     protected void onResume() {
@@ -196,9 +237,11 @@ public class Pedido extends AppCompatActivity {
                     OutroProduto outroProduto = objSnapshot.getValue(OutroProduto.class);
                     listasOutros.add(outroProduto);
                 }
-                arrayAdapterOutro = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item,listasOutros);
-                arrayAdapterOutro.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                spnOutro.setAdapter(arrayAdapterOutro);
+                OutrosPedidoAdapter outrosPedidoAdapter = new OutrosPedidoAdapter(Pedido.this,listasOutros);
+                outrosPedidoAdapter.setDropDownViewResource(R.layout.outrospedidolayout);
+                /*arrayAdapterOutro = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item,listasOutros);
+                arrayAdapterOutro.setDropDownViewResource(android.R.layout.simple_spinner_item);*/
+                spnOutro.setAdapter(outrosPedidoAdapter);
             }
 
             @Override
@@ -214,6 +257,9 @@ public class Pedido extends AppCompatActivity {
         infoFinal += quantBurguer.getText().toString()+"x"+" Burguer: "+ spinnerBurguerText+"\n";
         infoPedido.setText(infoFinal);
         valorTotalPedido.setText(String.valueOf(valorTotal));
+        ajudaBurguer++;
+        addIngrediente.setEnabled(true);
+        removeIngrediente.setEnabled(true);
     }
 
     public void addIngredientePedido(View view){
@@ -236,6 +282,7 @@ public class Pedido extends AppCompatActivity {
         infoFinal += quantBebida.getText().toString()+"x"+" Bebida: "+spinnerBebidaText+"\n";
         infoPedido.setText(infoFinal);
         valorTotalPedido.setText(String.valueOf(valorTotal));
+        ajudaBebida++;
     }
 
     public void salvarPedido(View view){
@@ -253,11 +300,15 @@ public class Pedido extends AppCompatActivity {
 
                 databaseReference.child("Pedido").child(pedidos.getIdPedido()).setValue(pedidos);
 
+                ajudaBurguer=0;
+                ajudaBebida=0;
                 infoPedido.setText("");
                 valorTotalPedido.setText("");
                 quantBurguer.setText("");
                 quantBebida.setText("");
                 quantOutro.setText("");
+                addIngrediente.setEnabled(false);
+                removeIngrediente.setEnabled(false);
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -288,10 +339,12 @@ public class Pedido extends AppCompatActivity {
                     Ingrediente ingrediente = objSnapshot.getValue(Ingrediente.class);
                     listasIngrediente.add(ingrediente);
                 }
-                arrayAdapterIngrediente = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasIngrediente);
-                arrayAdapterIngrediente.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                spnAddIngrediente.setAdapter(arrayAdapterIngrediente);
-                spnRemoveIngrediente.setAdapter(arrayAdapterIngrediente);
+                IngredientePedidoAdapter ingredientePedidoAdapter = new IngredientePedidoAdapter(Pedido.this,listasIngrediente);
+                ingredientePedidoAdapter.setDropDownViewResource(R.layout.ingredientepedidolayout);
+                /*arrayAdapterIngrediente = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasIngrediente);
+                arrayAdapterIngrediente.setDropDownViewResource(android.R.layout.simple_spinner_item);*/
+                spnAddIngrediente.setAdapter(ingredientePedidoAdapter);
+                spnRemoveIngrediente.setAdapter(ingredientePedidoAdapter);
             }
 
             @Override
@@ -310,9 +363,11 @@ public class Pedido extends AppCompatActivity {
                     Bebida bebida = objSnapshot.getValue(Bebida.class);
                     listasBebida.add(bebida);
                 }
-                arrayAdapterBebida = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasBebida);
-                arrayAdapterBebida.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                spnBebida.setAdapter(arrayAdapterBebida);
+                BebidaPedidoAdapter bebidaPedidoAdapter = new BebidaPedidoAdapter(Pedido.this,listasBebida);
+                bebidaPedidoAdapter.setDropDownViewResource(R.layout.bebidapedidolayout);
+                /*arrayAdapterBebida = new ArrayAdapter<>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasBebida);
+                arrayAdapterBebida.setDropDownViewResource(android.R.layout.simple_spinner_item);*/
+                spnBebida.setAdapter(bebidaPedidoAdapter);
             }
 
             @Override
@@ -331,9 +386,11 @@ public class Pedido extends AppCompatActivity {
                     Burguer burguer = areaSnapshot.getValue(Burguer.class);
                     listasBurguer.add(burguer);
                 }
-                arrayAdapterBurguer = new ArrayAdapter<Burguer>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasBurguer);
-                arrayAdapterBurguer.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                spnBurguer.setAdapter(arrayAdapterBurguer);
+                BurguerPedidoAdapter burguerPedidoAdapter = new BurguerPedidoAdapter(Pedido.this,listasBurguer);
+                burguerPedidoAdapter.setDropDownViewResource(R.layout.burguerpedidolayout);
+                /*arrayAdapterBurguer = new ArrayAdapter<Burguer>(Pedido.this, android.R.layout.simple_spinner_dropdown_item, listasBurguer);
+                arrayAdapterBurguer.setDropDownViewResource(android.R.layout.simple_spinner_item);*/
+                spnBurguer.setAdapter(burguerPedidoAdapter);
             }
 
             @Override

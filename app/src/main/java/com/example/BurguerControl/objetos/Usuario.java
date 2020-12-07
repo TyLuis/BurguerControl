@@ -5,6 +5,7 @@ public class Usuario {
     private String nomeUsuario;
     private String emailUsuario;
     private String senhaUsuario;
+    private String funcao;
 
     public Usuario() {
     }
@@ -39,5 +40,13 @@ public class Usuario {
 
     public void setSenhaUsuario(String senhaUsuario) {
         this.senhaUsuario = senhaUsuario;
+    }
+
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
 }

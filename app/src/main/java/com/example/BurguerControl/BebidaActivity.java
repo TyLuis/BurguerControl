@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.BurguerControl.adapter.BebidaAdapter;
 import com.example.BurguerControl.objetos.Bebida;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,12 +28,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class BebidaActivity extends AppCompatActivity {
     FirebaseAuth autentica = FirebaseAuth.getInstance();
     ListView listBebida;
-    private ArrayList<Bebida> listaBebida = new ArrayList<Bebida>();
+    private List<Bebida> listaBebida = new ArrayList<Bebida>();
     private ArrayAdapter<Bebida> arrayAdapterBebida;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -63,6 +65,9 @@ public class BebidaActivity extends AppCompatActivity {
                 etDescricaoBebida.setText(bebidaSelecionada.getDescricaoBebida());
                 etQuantidadeBebida.setText(String.valueOf(bebidaSelecionada.getQuantidadeBebida()));
                 etValorBebida.setText(String.valueOf(bebidaSelecionada.getValorBebida()));
+                btnExcluir.setEnabled(true);
+                btnEditar.setEnabled(true);
+                btnSalvar.setEnabled(false);
             }
         });
 
@@ -84,8 +89,6 @@ public class BebidaActivity extends AppCompatActivity {
             String valor = etValorBebida.getText().toString().trim();
 
             btnSalvar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
-            btnExcluir.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
-            btnEditar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
         }
 
         @Override
@@ -116,8 +119,9 @@ public class BebidaActivity extends AppCompatActivity {
                     Bebida bebida = objSnapshot.getValue(Bebida.class);
                     listaBebida.add(bebida);
                 }
-                arrayAdapterBebida = new ArrayAdapter<Bebida>(BebidaActivity.this,android.R.layout.simple_list_item_single_choice,listaBebida);
-                listBebida.setAdapter(arrayAdapterBebida);
+                BebidaAdapter bebidaAdapter = new BebidaAdapter(BebidaActivity.this, listaBebida);
+                /*arrayAdapterBebida = new ArrayAdapter<Bebida>(BebidaActivity.this,android.R.layout.simple_list_item_single_choice,listaBebida);*/
+                listBebida.setAdapter(bebidaAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -168,6 +172,7 @@ public class BebidaActivity extends AppCompatActivity {
 
                 databaseReference.child("Bebida").child(bebida.getIdBebida()).setValue(bebida);
                 limparcampos();
+                Toast.makeText(BebidaActivity.this,"Bebida salva com sucesso",Toast.LENGTH_LONG).show();
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -196,6 +201,7 @@ public class BebidaActivity extends AppCompatActivity {
 
                 databaseReference.child("Bebida").child(bebi.getIdBebida()).setValue(bebi);
                 limparcampos();
+                Toast.makeText(BebidaActivity.this,"Bebida editada com sucesso",Toast.LENGTH_LONG).show();
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -220,6 +226,7 @@ public class BebidaActivity extends AppCompatActivity {
                 bebida.setIdBebida(bebidaSelecionada.getIdBebida());
                 databaseReference.child("Bebida").child(bebida.getIdBebida()).removeValue();
                 limparcampos();
+                Toast.makeText(BebidaActivity.this,"Bebida excluída com sucesso",Toast.LENGTH_LONG).show();
             }
         });
         msg.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -237,6 +244,6 @@ public class BebidaActivity extends AppCompatActivity {
         etDescricaoBebida.setText("");
         etQuantidadeBebida.setText("");
         etValorBebida.setText("");
-        Toast.makeText(BebidaActivity.this,"Bebida salva com sucesso",Toast.LENGTH_LONG).show();
+
     }
 }

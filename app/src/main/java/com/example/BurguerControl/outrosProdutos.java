@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.BurguerControl.adapter.OutrosAdapter;
 import com.example.BurguerControl.objetos.OutroProduto;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,8 +64,15 @@ public class outrosProdutos extends AppCompatActivity {
                 etDescricaoOutro.setText(outroProdutoSelecionado.getDescricaoOutro());
                 etQuantidadeOutro.setText(String.valueOf(outroProdutoSelecionado.getQuantidadeOutro()));
                 etValorOutro.setText(String.valueOf(outroProdutoSelecionado.getValorOutro()));
+                btnEditar.setEnabled(true);
+                btnExcluir.setEnabled(true);
+                btnSalvar.setEnabled(false);
             }
         });
+
+        etDescricaoOutro.addTextChangedListener(outrosTextWatcher);
+        etQuantidadeOutro.addTextChangedListener(outrosTextWatcher);
+        etValorOutro.addTextChangedListener(outrosTextWatcher);
     }
 
     private TextWatcher outrosTextWatcher = new TextWatcher() {
@@ -80,8 +88,6 @@ public class outrosProdutos extends AppCompatActivity {
             String valor = etValorOutro.getText().toString().trim();
 
             btnSalvar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
-            btnEditar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
-            btnExcluir.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
         }
 
         @Override
@@ -105,8 +111,9 @@ public class outrosProdutos extends AppCompatActivity {
                     OutroProduto outreProducts = objSnapshot.getValue(OutroProduto.class);
                     listaOutros.add(outreProducts);
                 }
-                arrayAdapterOutros = new ArrayAdapter<OutroProduto>(outrosProdutos.this,android.R.layout.simple_list_item_single_choice,listaOutros);
-                listOutros.setAdapter(arrayAdapterOutros);
+                OutrosAdapter outrosAdapter = new OutrosAdapter(outrosProdutos.this,listaOutros);
+                /*arrayAdapterOutros = new ArrayAdapter<OutroProduto>(outrosProdutos.this,android.R.layout.simple_list_item_single_choice,listaOutros);*/
+            listOutros.setAdapter(outrosAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

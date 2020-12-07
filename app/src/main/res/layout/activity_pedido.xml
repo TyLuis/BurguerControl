@@ -99,6 +99,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="10dp"
         android:drawableTop="@drawable/salvar"
+        android:enabled="false"
         android:onClick="salvarPedido"
         android:text="Salvar"
         app:layout_constraintStart_toStartOf="parent"
@@ -184,6 +185,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/add"
+                android:enabled="false"
                 android:onClick="addBurguerPedido"
                 android:text="Adicionar produto ao pedido"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
@@ -199,6 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/add"
+                android:enabled="false"
                 android:onClick="addIngredientePedido"
                 android:text="Adicionar ingrediente"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -215,6 +218,7 @@
                 android:layout_height="39dp"
                 android:background="#FF5722"
                 android:drawableLeft="@drawable/minus"
+                android:enabled="false"
                 android:onClick="removeIngredientePedido"
                 android:text="Remover ingrediente"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -238,6 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/add"
+                android:enabled="false"
                 android:onClick="addBebidaSelecionado"
                 android:text="Adicionar bebida ao pedido"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
@@ -261,6 +266,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/add"
+                android:enabled="false"
                 android:onClick="addOutroProduto"
                 android:text="Adicionar outro produto"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2" />

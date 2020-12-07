@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.BurguerControl.adapter.BurguerAdapter;
 import com.example.BurguerControl.objetos.Burguer;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,6 +65,9 @@ public class HamburguerActivity extends AppCompatActivity{
                 etDescricaoBurguer.setText(burguerSelecionado.getDescricaoBurguer());
                 etQuantBurguer.setText(String.valueOf(burguerSelecionado.getEstoqueBurguer()));
                 etValorBurguer.setText(String.valueOf(burguerSelecionado.getValorBurguer()));
+                btnEditar.setEnabled(true);
+                btnExcluir.setEnabled(true);
+                btnSalvar.setEnabled(false);
             }
         });
 
@@ -85,8 +89,6 @@ public class HamburguerActivity extends AppCompatActivity{
             String valor = etValorBurguer.getText().toString().trim();
 
             btnSalvar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
-            btnEditar.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
-            btnExcluir.setEnabled(!descri.isEmpty() && !quant.isEmpty() && !valor.isEmpty());
         }
 
         @Override
@@ -117,8 +119,9 @@ public class HamburguerActivity extends AppCompatActivity{
                     Burguer burguer = objSnapshot.getValue(Burguer.class);
                     listaBurguer.add(burguer);
                 }
-                arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_single_choice,listaBurguer);
-                listBurguer.setAdapter(arrayAdapterBurger);
+                /*arrayAdapterBurger = new ArrayAdapter<Burguer>(HamburguerActivity.this,android.R.layout.simple_list_item_single_choice,listaBurguer);*/
+                BurguerAdapter burguerAdapter = new BurguerAdapter(HamburguerActivity.this,listaBurguer);
+                listBurguer.setAdapter(burguerAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
